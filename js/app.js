@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const flashcard = document.querySelector(".flashcard");
   const favoriteButtons = document.querySelectorAll(".favorite-button");
   const answerButtons = document.querySelectorAll(".answer-button");
+  const navItems = document.querySelectorAll(".nav-item");
   const quizFeedback = document.querySelector(".quiz-feedback");
 
   if (themeToggle) {
@@ -25,6 +26,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  navItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      navItems.forEach((navItem) => {
+        navItem.classList.remove("is-active");
+      });
+
+      item.classList.add("is-active");
+    });
+  });
+
   answerButtons.forEach((button) => {
     button.addEventListener("click", () => {
       answerButtons.forEach((answer) => {
@@ -33,10 +44,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (button.dataset.correct === "true") {
         button.classList.add("is-correct");
-        quizFeedback.textContent = "Correct. 你好 means hello.";
+        if (quizFeedback) {
+          quizFeedback.textContent = "Correct. 你好 means hello.";
+        }
       } else {
         button.classList.add("is-wrong");
-        quizFeedback.textContent = "Try again. Listen for the greeting phrase.";
+        if (quizFeedback) {
+          quizFeedback.textContent = "Try again. Listen for the greeting phrase.";
+        }
       }
     });
   });

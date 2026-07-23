@@ -51,22 +51,33 @@
       <symbol id="icon-play" viewBox="0 0 24 24">
         <path d="M8 5v14l11-7Z"></path>
       </symbol>
-      <symbol id="icon-check" viewBox="0 0 24 24">
-        <path d="m5 12 4 4L19 6"></path>
-      </symbol>
       <symbol id="icon-arrow" viewBox="0 0 24 24">
         <path d="M5 12h14"></path>
         <path d="m13 6 6 6-6 6"></path>
       </symbol>
+      <symbol id="icon-target" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="8"></circle>
+        <circle cx="12" cy="12" r="3"></circle>
+        <path d="M12 2v3"></path>
+        <path d="M12 19v3"></path>
+        <path d="M2 12h3"></path>
+        <path d="M19 12h3"></path>
+      </symbol>
+      <symbol id="icon-calendar" viewBox="0 0 24 24">
+        <path d="M7 3v4"></path>
+        <path d="M17 3v4"></path>
+        <path d="M4 8h16"></path>
+        <path d="M5 5h14v16H5Z"></path>
+      </symbol>
     </svg>
 
-    <div class="app-shell">
+    <div class="app-frame">
       <aside class="sidebar" aria-label="Primary navigation">
         <a class="brand" href="#home" aria-label="Beginner Chinese home">
           <span class="brand-mark">中</span>
           <span>
-            <strong>Chinese</strong>
-            <small>Beginner path</small>
+            <strong>Mandarin Flow</strong>
+            <small>Beginner Chinese</small>
           </span>
         </a>
 
@@ -98,30 +109,29 @@
         </nav>
 
         <div class="sidebar-note">
+          <span class="note-icon">
+            <svg aria-hidden="true"><use href="#icon-target"></use></svg>
+          </span>
           <p>Daily streak</p>
           <strong>4 days</strong>
         </div>
       </aside>
 
-      <div class="page">
+      <div class="learning-page">
         <header class="topbar">
-          <div>
-            <p class="eyebrow">Beginner Chinese</p>
-            <h1>Welcome back, learner</h1>
-          </div>
+          <label class="search-box" for="site-search">
+            <svg aria-hidden="true"><use href="#icon-search"></use></svg>
+            <input id="site-search" type="search" placeholder="Search pinyin, words, or lessons">
+          </label>
 
           <div class="topbar-actions">
-            <label class="search-box" for="site-search">
-              <svg aria-hidden="true"><use href="#icon-search"></use></svg>
-              <input id="site-search" type="search" placeholder="Search lessons">
-            </label>
-
             <button class="icon-button theme-toggle" type="button" aria-label="Toggle theme">
               <svg aria-hidden="true"><use href="#icon-moon"></use></svg>
             </button>
 
             <button class="profile-button" type="button" aria-label="Open profile">
               <span>DL</span>
+              <strong>Learner</strong>
             </button>
           </div>
         </header>
@@ -130,25 +140,56 @@
           <div class="main-content">
             <section class="hero-card" aria-labelledby="welcome-title">
               <div class="hero-copy">
-                <p class="eyebrow">Today's focus</p>
-                <h2 id="welcome-title">Build a calm, confident Chinese habit.</h2>
+                <p class="eyebrow">Today's Mandarin Lesson</p>
+                <h1 id="welcome-title">Speak Chinese with calm daily practice.</h1>
                 <p>
-                  Continue with tones, greetings, and high-frequency HSK 1 words
-                  in a clear beginner path.
+                  Continue your beginner path with tones, greetings, and useful
+                  HSK 1 vocabulary for real conversations.
                 </p>
                 <div class="button-row">
                   <a class="primary-button" href="#current-lesson">
-                    Continue Learning
+                    Resume Lesson
                     <svg aria-hidden="true"><use href="#icon-arrow"></use></svg>
                   </a>
-                  <a class="secondary-button" href="#learning-path">View Path</a>
+                  <a class="secondary-button" href="#vocabulary">Review Words</a>
                 </div>
               </div>
-              <div class="hero-panel" aria-label="Current study summary">
-                <span class="hanzi-display">你 好</span>
-                <p>Current lesson</p>
-                <strong>Greeting with the third tone</strong>
+
+              <div class="hero-language-card" aria-label="Featured phrase">
+                <span class="hanzi-display">你好</span>
+                <span class="pinyin-display">nǐ hǎo</span>
+                <p>Hello</p>
               </div>
+            </section>
+
+            <section class="quick-track" aria-label="Study focus areas">
+              <article class="track-card">
+                <span class="track-icon lavender">
+                  <svg aria-hidden="true"><use href="#icon-book"></use></svg>
+                </span>
+                <div>
+                  <p>2 of 5 lessons</p>
+                  <strong>Pinyin Tones</strong>
+                </div>
+              </article>
+              <article class="track-card">
+                <span class="track-icon peach">
+                  <svg aria-hidden="true"><use href="#icon-volume"></use></svg>
+                </span>
+                <div>
+                  <p>12 words reviewed</p>
+                  <strong>HSK 1 Words</strong>
+                </div>
+              </article>
+              <article class="track-card">
+                <span class="track-icon mint">
+                  <svg aria-hidden="true"><use href="#icon-calendar"></use></svg>
+                </span>
+                <div>
+                  <p>10 minutes today</p>
+                  <strong>Daily Habit</strong>
+                </div>
+              </article>
             </section>
 
             <section class="section-block" id="current-lesson" aria-labelledby="continue-title">
@@ -161,13 +202,16 @@
               </div>
 
               <div class="continue-card">
-                <div>
+                <div class="continue-main">
                   <span class="lesson-badge">Pinyin Lesson 02</span>
                   <h3>Tones in simple greetings</h3>
                   <p>Review tone marks, listen to short phrases, then answer a quick check.</p>
                 </div>
-                <div class="continue-meter" aria-label="Lesson progress 68 percent">
-                  <span style="--value: 68%"></span>
+                <div class="continue-side">
+                  <strong>68%</strong>
+                  <div class="continue-meter" aria-label="Lesson progress 68 percent">
+                    <span style="--value: 68%"></span>
+                  </div>
                 </div>
               </div>
             </section>
@@ -209,19 +253,19 @@
 
               <div class="lesson-card-grid">
                 <article class="lesson-card">
-                  <span class="tone-dot tone-one"></span>
+                  <span class="tone-dot tone-one">ā</span>
                   <h3>First Tone</h3>
-                  <p>High and steady. Practice with ma, ba, and tā.</p>
+                  <p>High and steady. Practice with mā, bā, and tā.</p>
                   <button class="ghost-button" type="button">Start</button>
                 </article>
                 <article class="lesson-card">
-                  <span class="tone-dot tone-two"></span>
+                  <span class="tone-dot tone-two">á</span>
                   <h3>Second Tone</h3>
                   <p>Rising tone. Keep your voice light and upward.</p>
                   <button class="ghost-button" type="button">Start</button>
                 </article>
                 <article class="lesson-card">
-                  <span class="tone-dot tone-three"></span>
+                  <span class="tone-dot tone-three">ǎ</span>
                   <h3>Third Tone</h3>
                   <p>Low dipping tone. Slow down and hear the contour.</p>
                   <button class="ghost-button" type="button">Start</button>
@@ -370,36 +414,45 @@
           </div>
 
           <aside class="right-panel" aria-label="Learning summary">
-            <section class="panel-card">
+            <section class="panel-card profile-summary">
               <div class="ring" aria-label="Overall progress 72 percent">
                 <span>72%</span>
               </div>
-              <h2>Learning Progress</h2>
-              <p>You are building a steady foundation in pinyin and HSK 1 words.</p>
+              <h2>Good morning</h2>
+              <p>Keep your rhythm with one focused Chinese lesson today.</p>
             </section>
 
             <section class="panel-card compact-card">
-              <div>
-                <p class="eyebrow">Daily Goal</p>
-                <h2>15 minutes</h2>
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">Daily Goal</p>
+                  <h2>15 minutes</h2>
+                </div>
+                <span class="soft-count">10/15</span>
               </div>
               <div class="mini-progress" aria-label="Daily goal progress 10 of 15 minutes">
                 <span style="--value: 67%"></span>
               </div>
-              <p>10 minutes completed today</p>
-            </section>
-
-            <section class="panel-card compact-card">
-              <p class="eyebrow">Continue Learning</p>
-              <h2>Tone pairs</h2>
-              <p>Practice short pairs like nǐ hǎo and hěn hǎo.</p>
-              <a class="text-link" href="#pinyin">Open pinyin</a>
+              <p>Five more minutes completes today's goal.</p>
             </section>
 
             <section class="panel-card compact-card">
               <p class="eyebrow">Current Lesson</p>
-              <h2>Greetings</h2>
-              <p>Learn polite everyday phrases for first conversations.</p>
+              <h2>Tone pairs</h2>
+              <p>Practice nǐ hǎo, hěn hǎo, and other useful phrase pairs.</p>
+              <a class="text-link" href="#pinyin">Open pinyin</a>
+            </section>
+
+            <section class="panel-card compact-card">
+              <p class="eyebrow">This Week</p>
+              <div class="mini-chart" aria-label="Weekly learning activity chart">
+                <span style="--height: 42%"></span>
+                <span style="--height: 68%"></span>
+                <span style="--height: 48%"></span>
+                <span style="--height: 84%"></span>
+                <span style="--height: 56%"></span>
+              </div>
+              <p>Strongest day: Thursday pronunciation review.</p>
             </section>
           </aside>
         </main>

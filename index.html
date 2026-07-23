@@ -1,462 +1,258 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Beginner Chinese Learning</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/app.js" defer></script>
-  </head>
-  <body>
-    <svg class="icon-sprite" aria-hidden="true">
-      <symbol id="icon-home" viewBox="0 0 24 24">
-        <path d="m3 11 9-8 9 8"></path>
-        <path d="M5 10v10h14V10"></path>
-        <path d="M9 20v-6h6v6"></path>
-      </symbol>
-      <symbol id="icon-book" viewBox="0 0 24 24">
-        <path d="M5 4h9a4 4 0 0 1 4 4v12H9a4 4 0 0 0-4-4Z"></path>
-        <path d="M5 4v16"></path>
-      </symbol>
-      <symbol id="icon-volume" viewBox="0 0 24 24">
-        <path d="M4 9v6h4l5 4V5L8 9Z"></path>
-        <path d="M16 9.5a4 4 0 0 1 0 5"></path>
-        <path d="M18.5 7a7 7 0 0 1 0 10"></path>
-      </symbol>
-      <symbol id="icon-star" viewBox="0 0 24 24">
-        <path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9Z"></path>
-      </symbol>
-      <symbol id="icon-cards" viewBox="0 0 24 24">
-        <path d="M8 4h11v14H8Z"></path>
-        <path d="M5 7v13h11"></path>
-      </symbol>
-      <symbol id="icon-quiz" viewBox="0 0 24 24">
-        <path d="M9 9a3 3 0 1 1 5.4 1.8c-1 .8-1.9 1.3-1.9 2.7"></path>
-        <path d="M12.5 17h.01"></path>
-        <circle cx="12" cy="12" r="9"></circle>
-      </symbol>
-      <symbol id="icon-chart" viewBox="0 0 24 24">
-        <path d="M4 19h16"></path>
-        <path d="M7 16V9"></path>
-        <path d="M12 16V5"></path>
-        <path d="M17 16v-4"></path>
-      </symbol>
-      <symbol id="icon-search" viewBox="0 0 24 24">
-        <circle cx="11" cy="11" r="7"></circle>
-        <path d="m16 16 4 4"></path>
-      </symbol>
-      <symbol id="icon-moon" viewBox="0 0 24 24">
-        <path d="M20 14.5A8 8 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z"></path>
-      </symbol>
-      <symbol id="icon-play" viewBox="0 0 24 24">
-        <path d="M8 5v14l11-7Z"></path>
-      </symbol>
-      <symbol id="icon-arrow" viewBox="0 0 24 24">
-        <path d="M5 12h14"></path>
-        <path d="m13 6 6 6-6 6"></path>
-      </symbol>
-      <symbol id="icon-target" viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="8"></circle>
-        <circle cx="12" cy="12" r="3"></circle>
-        <path d="M12 2v3"></path>
-        <path d="M12 19v3"></path>
-        <path d="M2 12h3"></path>
-        <path d="M19 12h3"></path>
-      </symbol>
-      <symbol id="icon-calendar" viewBox="0 0 24 24">
-        <path d="M7 3v4"></path>
-        <path d="M17 3v4"></path>
-        <path d="M4 8h16"></path>
-        <path d="M5 5h14v16H5Z"></path>
-      </symbol>
-    </svg>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#5b5ce2">
+<title>HanziGo AI — Học tiếng Trung từ số 0</title>
+<style>
 
-    <div class="app-frame">
-      <aside class="sidebar" aria-label="Primary navigation">
-        <a class="brand" href="#home" aria-label="Beginner Chinese home">
-          <span class="brand-mark">中</span>
-          <span>
-            <strong>Mandarin Flow</strong>
-            <small>Beginner Chinese</small>
-          </span>
-        </a>
+:root{
+  --primary:#0071e3;--primary-hover:#0077ed;--primary-soft:#eef7ff;--primary-rgb:0,113,227;
+  --green:#22a06b;--green-soft:#ecf9f2;--orange:#c76b00;--orange-soft:#fff6e9;--red:#d70015;--red-soft:#fff0f1;
+  --bg:#f5f5f7;--panel:rgba(255,255,255,.92);--panel-solid:#fff;--panel-2:#f8f8fa;
+  --text:#1d1d1f;--muted:#6e6e73;--muted-2:#86868b;--border:rgba(0,0,0,.09);--border-strong:rgba(0,0,0,.14);
+  --shadow-sm:0 1px 2px rgba(0,0,0,.03),0 4px 14px rgba(0,0,0,.04);
+  --shadow:0 18px 50px rgba(0,0,0,.08);--shadow-lg:0 30px 90px rgba(0,0,0,.14);
+  --r-sm:12px;--r:20px;--r-lg:30px;--sidebar:250px;--topbar:72px;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",Inter,"Segoe UI",sans-serif;
+}
+[data-theme="dark"]{
+  --primary:#0a84ff;--primary-hover:#409cff;--primary-soft:rgba(10,132,255,.14);--primary-rgb:10,132,255;
+  --green:#30d158;--green-soft:rgba(48,209,88,.13);--orange:#ff9f0a;--orange-soft:rgba(255,159,10,.13);--red:#ff453a;--red-soft:rgba(255,69,58,.13);
+  --bg:#0b0b0d;--panel:rgba(28,28,30,.88);--panel-solid:#1c1c1e;--panel-2:#242426;
+  --text:#f5f5f7;--muted:#a1a1a6;--muted-2:#8e8e93;--border:rgba(255,255,255,.10);--border-strong:rgba(255,255,255,.16);
+  --shadow-sm:0 1px 2px rgba(0,0,0,.2),0 8px 24px rgba(0,0,0,.16);--shadow:0 22px 60px rgba(0,0,0,.32);--shadow-lg:0 34px 100px rgba(0,0,0,.46)
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.52;letter-spacing:-.01em;overflow-x:hidden}
+button,input,select,textarea{font-family:inherit}.zh{font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif}.app{min-height:100vh}
+.ui-icon{width:20px;height:20px;display:inline-block;flex:0 0 auto;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.18em}.ui-icon.sm{width:17px;height:17px}.ui-icon.lg{width:24px;height:24px}.ui-icon.xl{width:30px;height:30px}
+.sidebar{position:fixed;inset:0 auto 0 0;width:var(--sidebar);background:color-mix(in srgb,var(--panel-solid) 93%,transparent);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:50;backdrop-filter:saturate(180%) blur(24px);-webkit-backdrop-filter:saturate(180%) blur(24px)}
+.brand{display:flex;gap:12px;align-items:center;padding:18px 17px 16px}.logo{width:40px;height:40px;border-radius:13px;background:var(--text);color:var(--panel-solid);display:grid;place-items:center;font-size:20px;font-weight:700;letter-spacing:-.08em;box-shadow:var(--shadow-sm)}.brand b{display:block;font-size:15px;font-weight:700;letter-spacing:-.025em}.brand small{display:block;color:var(--muted);font-size:11px;margin-top:1px}
+.nav{padding:8px 10px 14px;overflow:auto;flex:1}.nav::-webkit-scrollbar{width:0}.nav-title{font-size:10px;text-transform:uppercase;letter-spacing:.11em;color:var(--muted-2);font-weight:700;padding:17px 11px 7px}.nav-btn{width:100%;border:0;background:transparent;color:var(--muted);border-radius:11px;padding:10px 11px;display:flex;align-items:center;gap:11px;font-size:13.5px;font-weight:600;cursor:pointer;text-align:left;margin:2px 0;transition:background .18s,color .18s,transform .18s}.nav-btn:hover{background:var(--panel-2);color:var(--text)}.nav-btn:active{transform:scale(.985)}.nav-btn.active{background:var(--text);color:var(--panel-solid);box-shadow:var(--shadow-sm)}[data-theme="dark"] .nav-btn.active{background:#fff;color:#111}.nav-btn .icon{width:21px;height:21px;display:grid;place-items:center}.nav-btn .icon .ui-icon{width:19px;height:19px}.nav-btn #navDue{margin-left:auto;min-width:21px;height:21px;padding:0 6px;border-radius:999px;display:grid;place-items:center;background:var(--primary);color:#fff;font-size:10px;font-weight:700}.sidebar-foot{padding:14px 17px 18px;border-top:1px solid var(--border);font-size:10.5px;line-height:1.55;color:var(--muted-2)}
+.main{margin-left:var(--sidebar);min-height:100vh}.topbar{height:var(--topbar);position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:saturate(180%) blur(22px);-webkit-backdrop-filter:saturate(180%) blur(22px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 30px}.top-left,.top-right{display:flex;align-items:center;gap:10px}.menu{display:none;width:38px;height:38px;border:0;border-radius:50%;background:transparent;color:var(--text);cursor:pointer}.menu:hover{background:var(--panel-2)}.search{position:relative}.search input{width:310px;height:40px;border:1px solid transparent;background:color-mix(in srgb,var(--panel-solid) 78%,transparent);color:var(--text);border-radius:12px;padding:0 15px 0 42px;outline:none;box-shadow:0 0 0 1px var(--border);font-size:13px;transition:.2s}.search input::placeholder{color:var(--muted-2)}.search input:focus{width:345px;background:var(--panel-solid);box-shadow:0 0 0 3px rgba(var(--primary-rgb),.14),0 0 0 1px var(--primary)}.search .search-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--muted-2);pointer-events:none}.pill{height:36px;background:color-mix(in srgb,var(--panel-solid) 78%,transparent);border:1px solid var(--border);border-radius:999px;padding:0 12px;display:flex;align-items:center;gap:7px;font-size:12px;font-weight:650;color:var(--muted)}.pill .ui-icon{width:16px;height:16px}.pill.fire .ui-icon{color:var(--orange)}.pill.xp .ui-icon{color:var(--primary)}.icon-btn{width:38px;height:38px;border:1px solid var(--border);border-radius:50%;background:color-mix(in srgb,var(--panel-solid) 78%,transparent);color:var(--text);display:grid;place-items:center;cursor:pointer;transition:.18s}.icon-btn:hover{background:var(--panel-solid);transform:translateY(-1px)}#themeSun{display:none}[data-theme="dark"] #themeSun{display:block}[data-theme="dark"] #themeMoon{display:none}
+.content{max-width:1240px;margin:auto;padding:36px 38px 60px}.page{display:none;animation:fade .3s cubic-bezier(.2,.8,.2,1)}.page.active{display:block}@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.hero{min-height:330px;background:#111113;border-radius:var(--r-lg);color:#fff;padding:46px 48px;position:relative;overflow:hidden;box-shadow:var(--shadow-lg);display:grid;grid-template-columns:minmax(0,1.3fr) minmax(280px,.7fr);align-items:center;gap:34px}.hero:before{content:"";position:absolute;width:540px;height:540px;border-radius:50%;right:-170px;top:-260px;background:radial-gradient(circle,rgba(51,153,255,.92) 0%,rgba(45,94,255,.42) 38%,transparent 72%);filter:blur(4px)}.hero:after{content:"";position:absolute;width:330px;height:330px;border-radius:50%;right:115px;bottom:-235px;background:radial-gradient(circle,rgba(127,78,255,.68),transparent 70%)}.hero-copy,.hero-visual{position:relative;z-index:1}.eyebrow{display:inline-flex;align-items:center;gap:7px;border-radius:999px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);padding:7px 11px;font-size:10.5px;font-weight:700;letter-spacing:.09em;color:rgba(255,255,255,.8)}.hero h1{font-size:clamp(34px,4vw,54px);line-height:1.06;letter-spacing:-.055em;margin:18px 0 16px;max-width:760px}.hero p{max-width:700px;color:rgba(255,255,255,.68);font-size:15px;line-height:1.65}.hero-actions{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}.hero-visual{display:grid;place-items:center;min-height:235px}.hero-glyph{width:220px;height:220px;border-radius:54px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(24px);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 30px 70px rgba(0,0,0,.25);display:grid;place-items:center;font:700 75px/1 "Noto Sans SC";transform:rotate(5deg)}.hero-mini{position:absolute;left:-16px;bottom:7px;min-width:155px;padding:13px 14px;border-radius:16px;background:rgba(255,255,255,.9);color:#1d1d1f;box-shadow:0 18px 45px rgba(0,0,0,.2);font-size:11px}.hero-mini b{display:block;font-size:17px;letter-spacing:-.03em}.hero-mini span{color:#6e6e73}.hero-mini .mini-line{height:5px;background:#e8e8ed;border-radius:999px;margin-top:9px;overflow:hidden}.hero-mini .mini-line i{display:block;height:100%;width:68%;background:#0071e3;border-radius:inherit}
+.btn{min-height:40px;border:0;border-radius:999px;padding:0 17px;font-size:13px;font-weight:650;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:transform .18s,background .18s,box-shadow .18s,opacity .18s}.btn:hover{transform:translateY(-1px)}.btn:active{transform:scale(.985)}.btn:disabled{cursor:not-allowed;transform:none}.btn-primary{background:var(--primary);color:#fff;box-shadow:0 8px 18px rgba(var(--primary-rgb),.2)}.btn-primary:hover{background:var(--primary-hover)}.btn-green{background:var(--green);color:#fff}.btn-white{background:#fff;color:#111}.btn-ghost-light{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14);color:#fff}.btn-soft{background:var(--primary-soft);color:var(--primary)}.btn-outline{background:var(--panel-solid);border:1px solid var(--border-strong);color:var(--text);box-shadow:0 1px 1px rgba(0,0,0,.02)}.btn-outline:hover{background:var(--panel-2)}.btn-danger{background:var(--red-soft);color:var(--red);border:1px solid color-mix(in srgb,var(--red) 20%,transparent)}.btn-sm{min-height:34px;padding:0 13px;font-size:11.5px}.btn .ui-icon{width:16px;height:16px}
+.grid{display:grid;gap:16px}.grid-3{grid-template-columns:repeat(3,1fr)}.grid-2{grid-template-columns:repeat(2,1fr)}.card{background:var(--panel);border:1px solid var(--border);border-radius:var(--r);padding:22px;box-shadow:var(--shadow-sm);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}.card.hover{transition:transform .2s,border-color .2s,box-shadow .2s}.card.hover:hover{transform:translateY(-3px);border-color:rgba(var(--primary-rgb),.22);box-shadow:var(--shadow)}.section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;margin:34px 0 15px}.section-head h2,.page-title h1{font-size:24px;letter-spacing:-.035em;line-height:1.15}.section-head p,.page-title p{font-size:13px;color:var(--muted);margin-top:6px}.page-title{margin-bottom:23px}.page-title h1{font-size:32px}.stat{display:flex;gap:14px;align-items:center;min-width:0}.stat-icon{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;background:var(--primary-soft);color:var(--primary);flex:0 0 auto}.stat-icon.green{background:var(--green-soft);color:var(--green)}.stat-icon.orange{background:var(--orange-soft);color:var(--orange)}.stat-icon.neutral{background:var(--panel-2);color:var(--text)}.stat strong{font-size:23px;display:block;letter-spacing:-.04em;line-height:1.15}.stat small{color:var(--muted);font-size:11.5px}.progress{height:7px;background:color-mix(in srgb,var(--border) 75%,transparent);border-radius:999px;overflow:hidden}.progress>div{height:100%;background:var(--primary);border-radius:inherit;transition:.55s cubic-bezier(.2,.8,.2,1)}
+.daily-plan{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);gap:16px;margin-top:18px}.today-card{display:flex;align-items:center;gap:18px}.today-ring{width:82px;height:82px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--primary) var(--angle),var(--border) 0);position:relative;flex:0 0 auto}.today-ring:after{content:"";position:absolute;inset:7px;background:var(--panel-solid);border-radius:50%}.today-ring b{z-index:1;font-size:17px;letter-spacing:-.04em}.today-info{flex:1;min-width:0}.today-info h3{font-size:18px;letter-spacing:-.025em}.today-info p{color:var(--muted);font-size:12.5px;margin:5px 0 13px}.overview-grid .card{min-height:102px}
+.roadmap{position:relative;padding:4px 0}.unit{margin-bottom:36px}.unit-head{display:flex;align-items:center;gap:13px;margin-bottom:15px}.unit-no{width:40px;height:40px;border-radius:13px;background:var(--text);color:var(--panel-solid);display:grid;place-items:center;font-size:13px;font-weight:700;box-shadow:var(--shadow-sm)}.unit-head h3{font-size:18px;letter-spacing:-.025em}.unit-head p{font-size:12px;color:var(--muted);margin-top:2px}.lesson-row{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.lesson-node{position:relative;background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:16px;min-height:156px;cursor:pointer;box-shadow:var(--shadow-sm);transition:.2s}.lesson-node:hover:not(.locked){transform:translateY(-3px);border-color:rgba(var(--primary-rgb),.3);box-shadow:var(--shadow)}.lesson-node.locked{opacity:.48;cursor:not-allowed;box-shadow:none}.lesson-node.completed{border-color:color-mix(in srgb,var(--green) 26%,var(--border));background:linear-gradient(180deg,var(--panel),var(--green-soft))}.lesson-top{display:flex;justify-content:space-between;align-items:center}.lesson-badge{width:34px;height:34px;border-radius:11px;background:var(--panel-2);color:var(--text);display:grid;place-items:center;font-size:12px;font-weight:700}.completed .lesson-badge{background:var(--green);color:#fff}.lesson-status{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;color:var(--muted)}.lesson-status.ready{color:var(--primary);background:var(--primary-soft)}.lesson-status.done{color:var(--green);background:var(--green-soft)}.lesson-node h4{font-size:14px;letter-spacing:-.018em;margin:14px 0 6px}.lesson-node p{font-size:11.5px;color:var(--muted);line-height:1.45}.lesson-meta{position:absolute;bottom:14px;left:16px;right:16px;display:flex;justify-content:space-between;font-size:10px;color:var(--muted-2)}.lock{font-size:14px}
+.lesson-shell{max-width:900px;margin:auto}.lesson-header{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:14px}.lesson-stepbar{display:flex;gap:5px;flex:1;max-width:610px}.step-dot{height:5px;background:var(--border);border-radius:999px;flex:1}.step-dot.done,.step-dot.active{background:var(--primary)}.lesson-card{min-height:530px;padding:34px}.lesson-kicker{color:var(--primary);font-weight:700;font-size:10.5px;text-transform:uppercase;letter-spacing:.10em}.lesson-card h2{font-size:29px;letter-spacing:-.04em;margin:9px 0}.lesson-desc{color:var(--muted);font-size:13px}.objective-list{margin:24px 0;display:grid;gap:9px}.objective{display:flex;gap:11px;align-items:center;background:var(--panel-2);padding:13px 14px;border-radius:13px;font-size:13px}.objective .objective-icon{width:23px;height:23px;border-radius:50%;display:grid;place-items:center;color:var(--green);background:var(--green-soft)}.word-showcase{text-align:center;padding:20px}.word-zh{font-family:"Noto Sans SC";font-size:66px;font-weight:650;color:var(--text);letter-spacing:.02em}.word-py{font-size:19px;color:var(--orange);font-weight:650;margin-top:3px}.word-vi{font-size:17px;font-weight:650;margin-top:5px}.word-example{margin:20px auto 0;max-width:580px;background:var(--panel-2);border:1px solid var(--border);border-radius:16px;padding:15px}.word-actions{display:flex;justify-content:center;gap:9px;margin-top:20px;flex-wrap:wrap}.grammar-box{background:var(--primary-soft);border:1px solid rgba(var(--primary-rgb),.15);padding:20px;border-radius:18px;margin:20px 0}.formula{font-family:"Noto Sans SC";font-size:23px;color:var(--primary);font-weight:650;margin:8px 0 10px}.dialogue{display:grid;gap:12px;margin-top:20px}.bubble{max-width:78%;padding:13px 15px;border-radius:18px 18px 18px 6px;background:var(--panel-2);border:1px solid var(--border);cursor:pointer;transition:.18s}.bubble:hover{border-color:rgba(var(--primary-rgb),.28)}.bubble.right{margin-left:auto;background:var(--primary-soft);border-radius:18px 18px 6px 18px}.bubble .cn{font-family:"Noto Sans SC";font-size:19px;font-weight:600}.bubble .py{color:var(--orange);font-size:12.5px}.bubble .vi{color:var(--muted);font-size:11.5px}.question{text-align:center;margin:8px 0 22px}.question .prompt{font-size:12px;color:var(--muted)}.question h3{font-size:24px;letter-spacing:-.03em;margin-top:7px}.options{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}.option{border:1px solid var(--border-strong);background:var(--panel-solid);color:var(--text);border-radius:15px;padding:15px;text-align:left;font-size:13px;font-weight:600;cursor:pointer;transition:.18s}.option:hover{border-color:var(--primary);background:var(--primary-soft)}.option.selected{border-color:var(--primary);background:var(--primary-soft)}.option.correct{border-color:var(--green);background:var(--green-soft);color:var(--green)}.option.wrong{border-color:var(--red);background:var(--red-soft);color:var(--red)}.arrange-bank,.arrange-answer{min-height:72px;padding:12px;border:1px dashed var(--border-strong);border-radius:16px;display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.arrange-answer{background:var(--panel-2)}.token{padding:9px 13px;background:var(--panel-solid);color:var(--text);border-radius:10px;font:650 15px "Noto Sans SC";cursor:pointer;border:1px solid var(--border);box-shadow:0 2px 5px rgba(0,0,0,.04)}.lesson-footer{display:flex;justify-content:space-between;align-items:center;margin-top:16px}.feedback{padding:10px 13px;border-radius:999px;font-size:11.5px;font-weight:650}.feedback.good{background:var(--green-soft);color:var(--green)}.feedback.bad{background:var(--red-soft);color:var(--red)}
+.review-layout{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:18px}.review-card{text-align:center;min-height:450px;display:flex;flex-direction:column;align-items:center;justify-content:center}.review-card .word-zh{font-size:78px}.rating{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:20px;width:100%}.rating button{border:1px solid var(--border);background:var(--panel-solid);color:var(--text);border-radius:14px;padding:12px 6px;cursor:pointer;font-weight:650;transition:.18s}.rating button:hover{transform:translateY(-2px);border-color:var(--primary)}.rating small{display:block;color:var(--muted);font-weight:500;margin-top:2px}.empty{text-align:center;padding:55px 18px;color:var(--muted)}.empty-illustration{width:70px;height:70px;border-radius:22px;display:grid;place-items:center;margin:0 auto 16px;background:var(--green-soft);color:var(--green)}
+.vocab-toolbar{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:17px}.input,.select,textarea{border:1px solid var(--border-strong);background:var(--panel-solid);color:var(--text);border-radius:12px;padding:10px 12px;font-size:13px;outline:none;transition:.18s}.input:focus,.select:focus,textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(var(--primary-rgb),.12)}.vocab-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.vocab-item{background:var(--panel);border:1px solid var(--border);border-radius:17px;padding:16px;box-shadow:var(--shadow-sm);transition:.18s}.vocab-item:hover{transform:translateY(-2px);box-shadow:var(--shadow)}.vocab-item .cn{font-family:"Noto Sans SC";font-size:29px;font-weight:650;color:var(--text)}.vocab-item .py{color:var(--orange);font-size:12.5px;font-weight:650}.vocab-item .vi{font-size:12.5px;margin:5px 0 12px}.vocab-foot{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);padding-top:10px}.mastery{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;color:var(--muted)}.status-dot{width:6px;height:6px;border-radius:50%;background:var(--muted)}.status-dot.locked{background:var(--muted-2)}.status-dot.weak{background:var(--orange)}.status-dot.mastered{background:var(--green)}.status-dot.learning{background:var(--primary)}
+.ai-layout{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:18px}.chat{height:570px;display:flex;flex-direction:column;padding:0;overflow:hidden}.chat-log{flex:1;overflow:auto;padding:22px;display:flex;flex-direction:column;gap:12px}.msg{max-width:82%;padding:12px 14px;border-radius:18px 18px 18px 5px;background:var(--panel-2);font-size:13px;white-space:pre-wrap;line-height:1.6}.msg.user{margin-left:auto;background:var(--primary);color:#fff;border-radius:18px 18px 5px 18px}.msg.ai{border:1px solid var(--border)}.chat-compose{display:flex;gap:9px;border-top:1px solid var(--border);padding:13px;background:var(--panel-solid)}.chat-compose textarea{flex:1;resize:none;height:44px;border:0;background:var(--panel-2);box-shadow:none}.preset{display:grid;gap:8px;margin-top:14px}.preset button{text-align:left;justify-content:flex-start;border-radius:13px}.setting-row{margin-bottom:15px}.setting-row label{display:block;font-size:11px;font-weight:650;margin-bottom:6px}.setting-row .input{width:100%}.notice{font-size:10.5px;line-height:1.55;color:var(--muted);background:var(--panel-2);border:1px solid var(--border);padding:11px 12px;border-radius:12px}.chart-bars{display:flex;align-items:end;height:160px;gap:12px;padding-top:16px}.bar-wrap{flex:1;text-align:center;font-size:9.5px;color:var(--muted)}.bar{background:var(--primary);border-radius:7px 7px 3px 3px;min-height:4px;opacity:.86}.mistake-list{display:grid;gap:9px}.mistake-item{display:flex;justify-content:space-between;align-items:center;padding:11px 12px;background:var(--panel-2);border:1px solid var(--border);border-radius:12px}.settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.setting-card h3{font-size:15px;letter-spacing:-.02em;margin-bottom:6px}.setting-card p{font-size:11.5px;color:var(--muted);margin-bottom:15px}.modal{position:fixed;inset:0;background:rgba(0,0,0,.4);backdrop-filter:blur(12px);z-index:100;display:none;align-items:center;justify-content:center;padding:20px}.modal.open{display:flex}.modal-box{background:var(--panel-solid);width:min(640px,100%);max-height:85vh;overflow:auto;border-radius:24px;border:1px solid var(--border);box-shadow:var(--shadow-lg);padding:24px}.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.close{width:32px;height:32px;border:0;border-radius:50%;background:var(--panel-2);color:var(--muted);display:grid;place-items:center;cursor:pointer}.toast{position:fixed;right:24px;bottom:24px;background:var(--text);color:var(--panel-solid);padding:12px 16px;border-radius:999px;box-shadow:var(--shadow);z-index:120;transform:translateY(100px);opacity:0;transition:.28s;font-size:12px;font-weight:600}.toast.show{transform:none;opacity:1}.mobile-overlay{display:none}
+@media(max-width:1080px){.lesson-row{grid-template-columns:repeat(3,1fr)}.vocab-grid{grid-template-columns:repeat(3,1fr)}.hero{grid-template-columns:1fr minmax(230px,.55fr);padding:40px}.content{padding-left:28px;padding-right:28px}}
+@media(max-width:860px){.sidebar{transform:translateX(-104%);transition:.28s cubic-bezier(.2,.8,.2,1);box-shadow:var(--shadow-lg)}.sidebar.open{transform:none}.mobile-overlay.show{display:block;position:fixed;inset:0;background:rgba(0,0,0,.35);backdrop-filter:blur(4px);z-index:45}.main{margin-left:0}.menu{display:grid;place-items:center}.content{padding:24px 20px 45px}.topbar{padding:0 18px}.search input{width:220px}.search input:focus{width:250px}.hero{grid-template-columns:1fr;min-height:auto}.hero-visual{display:none}.daily-plan,.review-layout,.ai-layout{grid-template-columns:1fr}.grid-3{grid-template-columns:1fr}.lesson-row{grid-template-columns:repeat(2,1fr)}.vocab-grid{grid-template-columns:repeat(2,1fr)}.ai-layout>.card:last-child{order:-1}.chat{height:500px}}
+@media(max-width:580px){:root{--r:17px;--r-lg:23px}.content{padding:16px 13px 36px}.topbar{height:62px;padding:0 13px}.search{display:none}.pill.xp{display:none}.pill{height:34px}.hero{padding:27px 23px;min-height:310px}.hero h1{font-size:34px}.hero p{font-size:13px}.hero-actions{display:grid;grid-template-columns:1fr}.hero-actions .btn{width:100%}.daily-plan{margin-top:13px}.today-card{align-items:flex-start;flex-wrap:wrap}.today-ring{width:68px;height:68px}.today-card>.btn{width:100%}.grid-2,.settings-grid{grid-template-columns:1fr}.lesson-row{grid-template-columns:1fr}.vocab-grid{grid-template-columns:1fr 1fr;gap:9px}.vocab-item{padding:13px}.vocab-item .cn{font-size:25px}.lesson-card{padding:22px;min-height:500px}.lesson-header{gap:8px}.lesson-header>.btn{padding:0 10px}.options{grid-template-columns:1fr}.word-zh{font-size:54px}.lesson-footer{gap:8px}.lesson-footer .btn{padding:0 12px}.rating{grid-template-columns:repeat(2,1fr)}.bubble{max-width:92%}.section-head{margin-top:28px}.page-title h1{font-size:28px}.review-card{min-height:390px}.chat-log{padding:15px}.toast{left:13px;right:13px;bottom:13px;text-align:center}}
 
-        <nav class="nav-list">
-          <a class="nav-item is-active" href="#home">
-            <svg aria-hidden="true"><use href="#icon-home"></use></svg>
-            Home
-          </a>
-          <a class="nav-item" href="#pinyin">
-            <svg aria-hidden="true"><use href="#icon-book"></use></svg>
-            Pinyin
-          </a>
-          <a class="nav-item" href="#vocabulary">
-            <svg aria-hidden="true"><use href="#icon-volume"></use></svg>
-            Vocabulary
-          </a>
-          <a class="nav-item" href="#flashcards">
-            <svg aria-hidden="true"><use href="#icon-cards"></use></svg>
-            Flashcards
-          </a>
-          <a class="nav-item" href="#quiz">
-            <svg aria-hidden="true"><use href="#icon-quiz"></use></svg>
-            Quiz
-          </a>
-          <a class="nav-item" href="#progress">
-            <svg aria-hidden="true"><use href="#icon-chart"></use></svg>
-            Progress
-          </a>
-        </nav>
+</style>
+</head>
+<body>
 
-        <div class="sidebar-note">
-          <span class="note-icon">
-            <svg aria-hidden="true"><use href="#icon-target"></use></svg>
-          </span>
-          <p>Daily streak</p>
-          <strong>4 days</strong>
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3.5 10.5 12 3l8.5 7.5"/><path d="M5.5 9.5V21h13V9.5"/><path d="M9.5 21v-6h5v6"/></symbol>
+  <symbol id="i-map" viewBox="0 0 24 24"><path d="m3 5 5-2 8 2 5-2v16l-5 2-8-2-5 2Z"/><path d="M8 3v16M16 5v16"/></symbol>
+  <symbol id="i-brain" viewBox="0 0 24 24"><path d="M9.5 4.2A3.5 3.5 0 0 0 4.7 8 3.6 3.6 0 0 0 5 15a3.5 3.5 0 0 0 4.5 4.8V4.2Z"/><path d="M14.5 4.2A3.5 3.5 0 0 1 19.3 8a3.6 3.6 0 0 1-.3 7 3.5 3.5 0 0 1-4.5 4.8V4.2Z"/><path d="M9.5 9H7.8M14.5 9h1.7M9.5 14H7M14.5 14H17"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H11v18H6.5A2.5 2.5 0 0 0 4 22V4.5Z"/><path d="M20 4.5A2.5 2.5 0 0 0 17.5 2H13v18h4.5A2.5 2.5 0 0 1 20 22V4.5Z"/></symbol>
+  <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="m12 3 1.1 3.4L16.5 7.5l-3.4 1.1L12 12l-1.1-3.4-3.4-1.1 3.4-1.1L12 3Z"/><path d="m18 13 .8 2.2L21 16l-2.2.8L18 19l-.8-2.2L15 16l2.2-.8L18 13ZM5.5 14l.6 1.7 1.7.6-1.7.6-.6 1.7-.6-1.7-1.7-.6 1.7-.6.6-1.7Z"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+  <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1-2.9 2.9-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.6v.1h-4V21a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.8.3l-.1.1-2.9-2.9.1-.1a1.7 1.7 0 0 0 .3-1.8A1.7 1.7 0 0 0 3 14H3v-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.8l-.1-.1 2.9-2.9.1.1a1.7 1.7 0 0 0 1.8.3 1.7 1.7 0 0 0 1-1.6V3h4v.1a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.8-.3l.1-.1 2.9 2.9-.1.1a1.7 1.7 0 0 0-.3 1.8 1.7 1.7 0 0 0 1.6 1h.1v4h-.1a1.7 1.7 0 0 0-1.7.9Z"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol>
+  <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 22c4.1 0 7-2.7 7-6.5 0-4.8-3.9-7.2-5.2-11.5-2.4 1.8-3.8 4-3.7 6.5-1.4-.8-2.2-2.1-2.4-3.6C5.4 9.2 5 11.4 5 14c0 4.7 2.9 8 7 8Z"/><path d="M9.5 17c0 2 1.1 3.5 2.8 3.5 1.8 0 3.2-1.3 3.2-3.2 0-1.6-.9-2.7-2-4.3-.2 1.6-.9 2.4-2 3.1-.2-1-.8-1.8-1.5-2.4-.3 1.1-.5 2.1-.5 3.3Z"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 5.5 13H11l-1 9 8.5-12H13l0-8Z"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.5 15.5A8.5 8.5 0 0 1 8.5 3.5 8.5 8.5 0 1 0 20.5 15.5Z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7V5Z"/></symbol>
+  <symbol id="i-graduation" viewBox="0 0 24 24"><path d="m3 9 9-5 9 5-9 5-9-5Z"/><path d="M7 12v4c2.7 2 7.3 2 10 0v-4M21 9v6"/></symbol>
+  <symbol id="i-language" viewBox="0 0 24 24"><path d="M4 5h8M8 3v2M5 9c2.5 4 5.5 6 9 7"/><path d="M11 9c-1.5 3-4 5.5-7 7M15 20l3-8 3 8M16 17h4"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="m8 3 8 0-1 6 3 3H6l3-3-1-6Z"/><path d="M12 12v9"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+  <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 4h8v4c0 4-2 7-4 7s-4-3-4-7V4Z"/><path d="M8 6H4v2c0 3 2 5 5 5M16 6h4v2c0 3-2 5-5 5M12 15v4M8 21h8"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5M4 21h16"/></symbol>
+  <symbol id="i-volume" viewBox="0 0 24 24"><path d="M5 10v4h4l5 4V6L9 10H5Z"/><path d="M17 9c1.3 1.7 1.3 4.3 0 6M19.5 6.5c3 3.1 3 7.9 0 11"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M9 21h6"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="i-repeat" viewBox="0 0 24 24"><path d="m17 2 4 4-4 4M3 11V9a3 3 0 0 1 3-3h15M7 22l-4-4 4-4M21 13v2a3 3 0 0 1-3 3H3"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9L12 3Z"/></symbol>
+  <symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-8 20-4-8-8-4 20-8Z"/><path d="M10 14 22 2"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7h.01"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M7 7l1 14h8l1-14M10 11v6M14 11v6"/></symbol>
+  <symbol id="i-chevrons" viewBox="0 0 24 24"><path d="m7 7 5 5-5 5M13 7l5 5-5 5"/></symbol>
+</svg>
+
+<div class="app">
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="brand"><div class="logo zh">学</div><div><b>HanziGo AI</b><small>Chinese learning system</small></div></div>
+    <nav class="nav">
+      <div class="nav-title">Học tập</div>
+      <button class="nav-btn active" data-page="home"><span class="icon"><svg class="ui-icon"><use href="#i-home"/></svg></span>Trang chủ</button>
+      <button class="nav-btn" data-page="roadmap"><span class="icon"><svg class="ui-icon"><use href="#i-map"/></svg></span>Lộ trình học</button>
+      <button class="nav-btn" data-page="review"><span class="icon"><svg class="ui-icon"><use href="#i-brain"/></svg></span>Ôn tập thông minh <span id="navDue"></span></button>
+      <button class="nav-btn" data-page="vocabulary"><span class="icon"><svg class="ui-icon"><use href="#i-book"/></svg></span>Từ vựng</button>
+      <div class="nav-title">AI & theo dõi</div>
+      <button class="nav-btn" data-page="tutor"><span class="icon"><svg class="ui-icon"><use href="#i-sparkles"/></svg></span>Trợ giảng AI</button>
+      <button class="nav-btn" data-page="progress"><span class="icon"><svg class="ui-icon"><use href="#i-chart"/></svg></span>Tiến độ</button>
+      <button class="nav-btn" data-page="settings"><span class="icon"><svg class="ui-icon"><use href="#i-settings"/></svg></span>Cài đặt</button>
+    </nav>
+    <div class="sidebar-foot">Phiên bản 2.0 · Offline-first<br>Dữ liệu lưu trên trình duyệt</div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="top-left"><button class="menu" id="menuBtn" aria-label="Mở menu"><svg class="ui-icon lg"><use href="#i-menu"/></svg></button><div class="search"><svg class="ui-icon search-icon"><use href="#i-search"/></svg><input id="globalSearch" placeholder="Tìm chữ Hán, pinyin, nghĩa..."></div></div>
+      <div class="top-right"><div class="pill fire"><svg class="ui-icon"><use href="#i-flame"/></svg><span id="streakTop">1</span> ngày</div><div class="pill xp"><svg class="ui-icon"><use href="#i-bolt"/></svg><span id="xpTop">0</span> XP</div><button class="icon-btn" id="themeBtn" aria-label="Đổi giao diện"><svg class="ui-icon" id="themeMoon"><use href="#i-moon"/></svg><svg class="ui-icon" id="themeSun"><use href="#i-sun"/></svg></button></div>
+    </header>
+
+    <div class="content">
+      <section class="page active" id="page-home">
+        <div class="hero"><div class="hero-copy"><span class="eyebrow"><svg class="ui-icon sm"><use href="#i-sparkles"/></svg>LỘ TRÌNH CÁ NHÂN HÓA CHO NGƯỜI MỚI</span><h1>Học tiếng Trung từ số 0, theo cách rõ ràng và có hệ thống.</h1><p>Phát âm, từ vựng, mẫu câu, hội thoại và luyện nghe nói được nối thành một lộ trình liền mạch. Nội dung chưa nhớ sẽ tự quay lại đúng thời điểm.</p><div class="hero-actions"><button class="btn btn-white" onclick="App.continueLearning()"><svg class="ui-icon"><use href="#i-play"/></svg>Tiếp tục bài học</button><button class="btn btn-ghost-light" onclick="App.go('roadmap')">Xem toàn bộ lộ trình<svg class="ui-icon"><use href="#i-arrow-right"/></svg></button></div></div><div class="hero-visual"><div class="hero-glyph zh">你好</div><div class="hero-mini"><span>Tiến độ hôm nay</span><b>10 phút tập trung</b><div class="mini-line"><i></i></div></div></div></div>
+        <div class="daily-plan">
+          <div class="card today-card"><div class="today-ring" id="dailyRing" style="--angle:0deg"><b id="dailyPct">0%</b></div><div class="today-info"><h3>Kế hoạch hôm nay</h3><p id="todayText">1 bài mới + ôn các từ đến hạn</p><div class="progress"><div id="dailyBar" style="width:0%"></div></div></div><button class="btn btn-primary" onclick="App.continueLearning()">Học ngay</button></div>
+          <div class="card stat"><div class="stat-icon orange"><svg class="ui-icon lg"><use href="#i-brain"/></svg></div><div><strong id="dueHome">0</strong><small>Từ cần ôn hôm nay</small><br><button class="btn btn-sm btn-soft" style="margin-top:7px" onclick="App.go('review')">Ôn ngay</button></div></div>
         </div>
-      </aside>
+        <div class="section-head"><div><h2>Tổng quan tiến độ</h2><p>Tiến bộ nhỏ mỗi ngày tạo nên khả năng giao tiếp thật.</p></div></div>
+        <div class="grid grid-3 overview-grid"><div class="card stat"><div class="stat-icon"><svg class="ui-icon lg"><use href="#i-graduation"/></svg></div><div><strong id="lessonsHome">0 / 24</strong><small>Bài đã hoàn thành</small></div></div><div class="card stat"><div class="stat-icon green"><svg class="ui-icon lg"><use href="#i-language"/></svg></div><div><strong id="wordsHome">0</strong><small>Từ đã được học</small></div></div><div class="card stat"><div class="stat-icon orange"><svg class="ui-icon lg"><use href="#i-target"/></svg></div><div><strong id="accuracyHome">0%</strong><small>Độ chính xác luyện tập</small></div></div></div>
+        <div class="section-head"><div><h2>Bài tiếp theo</h2><p>Học theo đúng thứ tự để kiến thức nối tiếp tự nhiên.</p></div></div>
+        <div id="nextLessonCard"></div>
+      </section>
 
-      <div class="learning-page">
-        <header class="topbar">
-          <label class="search-box" for="site-search">
-            <svg aria-hidden="true"><use href="#icon-search"></use></svg>
-            <input id="site-search" type="search" placeholder="Search pinyin, words, or lessons">
-          </label>
+      <section class="page" id="page-roadmap">
+        <div class="page-title"><h1>Lộ trình tiếng Trung căn bản</h1><p>24 bài học ngắn, đi từ phát âm đến hội thoại đời sống và công việc.</p></div>
+        <div class="roadmap" id="roadmap"></div>
+      </section>
 
-          <div class="topbar-actions">
-            <button class="icon-button theme-toggle" type="button" aria-label="Toggle theme">
-              <svg aria-hidden="true"><use href="#icon-moon"></use></svg>
-            </button>
+      <section class="page" id="page-lesson">
+        <div class="lesson-shell">
+          <div class="lesson-header"><button class="btn btn-outline btn-sm" onclick="Lesson.exit()"><svg class="ui-icon"><use href="#i-arrow-left"/></svg>Thoát</button><div class="lesson-stepbar" id="lessonStepbar"></div><span id="lessonStepText" style="font-size:12px;color:var(--muted)"></span></div>
+          <div class="card lesson-card" id="lessonContent"></div>
+          <div class="lesson-footer"><button class="btn btn-outline" id="lessonPrev" onclick="Lesson.prev()"><svg class="ui-icon"><use href="#i-arrow-left"/></svg>Trước</button><div id="lessonFeedback"></div><button class="btn btn-primary" id="lessonNext" onclick="Lesson.next()">Tiếp tục<svg class="ui-icon"><use href="#i-arrow-right"/></svg></button></div>
+        </div>
+      </section>
 
-            <button class="profile-button" type="button" aria-label="Open profile">
-              <span>DL</span>
-              <strong>Learner</strong>
-            </button>
-          </div>
-        </header>
+      <section class="page" id="page-review">
+        <div class="page-title"><h1>Ôn tập thông minh</h1><p>Thuật toán lặp lại ngắt quãng ưu tiên từ bạn sắp quên hoặc từng trả lời sai.</p></div>
+        <div class="review-layout">
+          <div class="card review-card" id="reviewMain"></div>
+          <div class="card"><h3>Phiên ôn hôm nay</h3><div class="grid" style="margin-top:16px"><div class="stat"><div class="stat-icon orange"><svg class="ui-icon lg"><use href="#i-pin"/></svg></div><div><strong id="dueReview">0</strong><small>Đến hạn</small></div></div><div class="stat"><div class="stat-icon green"><svg class="ui-icon lg"><use href="#i-check"/></svg></div><div><strong id="reviewedToday">0</strong><small>Đã ôn hôm nay</small></div></div></div><div class="notice" style="margin-top:18px">Đánh giá “Quên” sẽ đưa từ quay lại sớm. “Dễ” sẽ kéo dài khoảng cách ôn để tiết kiệm thời gian.</div></div>
+        </div>
+      </section>
 
-        <main class="content-grid" id="home">
-          <div class="main-content">
-            <section class="hero-card" aria-labelledby="welcome-title">
-              <div class="hero-copy">
-                <p class="eyebrow">Today's Mandarin Lesson</p>
-                <h1 id="welcome-title">Speak Chinese with calm daily practice.</h1>
-                <p>
-                  Continue your beginner path with tones, greetings, and useful
-                  HSK 1 vocabulary for real conversations.
-                </p>
-                <div class="button-row">
-                  <a class="primary-button" href="#current-lesson">
-                    Resume Lesson
-                    <svg aria-hidden="true"><use href="#icon-arrow"></use></svg>
-                  </a>
-                  <a class="secondary-button" href="#vocabulary">Review Words</a>
-                </div>
-              </div>
+      <section class="page" id="page-vocabulary">
+        <div class="page-title"><h1>Kho từ vựng</h1><p>Tất cả từ đã mở khóa trong lộ trình, kèm phát âm và mức độ ghi nhớ.</p></div>
+        <div class="vocab-toolbar"><input class="input" id="vocabSearch" placeholder="Tìm từ..." oninput="Vocab.render()"><select class="select" id="vocabFilter" onchange="Vocab.render()"><option value="learned">Đã học</option><option value="all">Tất cả</option><option value="weak">Đang yếu</option><option value="due">Cần ôn</option></select><button class="btn btn-outline btn-sm" onclick="Vocab.togglePinyin()">Ẩn/hiện Pinyin</button></div>
+        <div class="vocab-grid" id="vocabGrid"></div>
+      </section>
 
-              <div class="hero-language-card" aria-label="Featured phrase">
-                <span class="hanzi-display">你好</span>
-                <span class="pinyin-display">nǐ hǎo</span>
-                <p>Hello</p>
-              </div>
-            </section>
+      <section class="page" id="page-tutor">
+        <div class="page-title"><h1>Trợ giảng AI</h1><p>Hỏi ngữ pháp, kiểm tra câu, tạo ví dụ và luyện hội thoại theo đúng cấp độ hiện tại.</p></div>
+        <div class="ai-layout">
+          <div class="card chat"><div class="chat-log" id="chatLog"></div><div class="chat-compose"><textarea id="chatInput" placeholder="Ví dụ: Giải thích sự khác nhau giữa 是 và 有..."></textarea><button class="btn btn-primary" onclick="AITutor.send()"><svg class="ui-icon"><use href="#i-send"/></svg>Gửi</button></div></div>
+          <div class="card"><h3>Cấu hình AI</h3><div class="setting-row" style="margin-top:14px"><label>Gemini API Key</label><input class="input" id="aiKey" type="password" placeholder="Dán API key cá nhân"></div><div class="setting-row"><label>Model</label><input class="input" id="aiModel" value="gemini-3.6-flash"></div><button class="btn btn-primary" style="width:100%" onclick="AITutor.saveSettings()">Lưu cấu hình</button><div class="notice" style="margin-top:12px">Không có API vẫn dùng được trợ giảng offline cơ bản. API key chỉ lưu trong trình duyệt này; không nên đưa file có sẵn key lên mạng công khai.</div><div class="preset"><button class="btn btn-outline" onclick="AITutor.preset('Giải thích bài hiện tại thật dễ hiểu, có ví dụ tiếng Việt.')"><svg class="ui-icon"><use href="#i-info"/></svg>Giải thích bài hiện tại</button><button class="btn btn-outline" onclick="AITutor.preset('Tạo 5 câu luyện tập phù hợp trình độ hiện tại của tôi.')"><svg class="ui-icon"><use href="#i-book"/></svg>Tạo bài luyện thêm</button><button class="btn btn-outline" onclick="AITutor.preset('Hãy đóng vai người Trung Quốc và luyện hội thoại ngắn với tôi.')"><svg class="ui-icon"><use href="#i-mic"/></svg>Luyện hội thoại</button><button class="btn btn-outline" onclick="AITutor.preset('Phân tích những lỗi sai gần đây và cho tôi cách khắc phục.')"><svg class="ui-icon"><use href="#i-target"/></svg>Sửa điểm yếu</button></div></div>
+        </div>
+      </section>
 
-            <section class="quick-track" aria-label="Study focus areas">
-              <article class="track-card">
-                <span class="track-icon lavender">
-                  <svg aria-hidden="true"><use href="#icon-book"></use></svg>
-                </span>
-                <div>
-                  <p>2 of 5 lessons</p>
-                  <strong>Pinyin Tones</strong>
-                </div>
-              </article>
-              <article class="track-card">
-                <span class="track-icon peach">
-                  <svg aria-hidden="true"><use href="#icon-volume"></use></svg>
-                </span>
-                <div>
-                  <p>12 words reviewed</p>
-                  <strong>HSK 1 Words</strong>
-                </div>
-              </article>
-              <article class="track-card">
-                <span class="track-icon mint">
-                  <svg aria-hidden="true"><use href="#icon-calendar"></use></svg>
-                </span>
-                <div>
-                  <p>10 minutes today</p>
-                  <strong>Daily Habit</strong>
-                </div>
-              </article>
-            </section>
+      <section class="page" id="page-progress">
+        <div class="page-title"><h1>Tiến độ học tập</h1><p>Theo dõi tính đều đặn, độ chính xác và những phần cần tập trung.</p></div>
+        <div class="grid grid-3"><div class="card stat"><div class="stat-icon orange"><svg class="ui-icon lg"><use href="#i-flame"/></svg></div><div><strong id="progStreak">1</strong><small>Chuỗi ngày học</small></div></div><div class="card stat"><div class="stat-icon"><svg class="ui-icon lg"><use href="#i-bolt"/></svg></div><div><strong id="progXp">0</strong><small>Tổng XP</small></div></div><div class="card stat"><div class="stat-icon green"><svg class="ui-icon lg"><use href="#i-trophy"/></svg></div><div><strong id="progLessons">0</strong><small>Bài hoàn thành</small></div></div></div>
+        <div class="grid grid-2" style="margin-top:18px"><div class="card"><h3>Hoạt động 7 ngày</h3><div class="chart-bars" id="weekChart"></div></div><div class="card"><h3>Từ cần củng cố</h3><div class="mistake-list" id="weakWords" style="margin-top:14px"></div></div></div>
+        <div class="card" style="margin-top:18px"><h3>Kỹ năng</h3><div id="skillBars" style="display:grid;gap:16px;margin-top:15px"></div></div>
+      </section>
 
-            <section class="section-block" id="current-lesson" aria-labelledby="continue-title">
-              <div class="section-heading">
-                <div>
-                  <p class="eyebrow">Continue Learning</p>
-                  <h2 id="continue-title">Pick up where you left off</h2>
-                </div>
-                <a href="#quiz">Practice now</a>
-              </div>
-
-              <div class="continue-card">
-                <div class="continue-main">
-                  <span class="lesson-badge">Pinyin Lesson 02</span>
-                  <h3>Tones in simple greetings</h3>
-                  <p>Review tone marks, listen to short phrases, then answer a quick check.</p>
-                </div>
-                <div class="continue-side">
-                  <strong>68%</strong>
-                  <div class="continue-meter" aria-label="Lesson progress 68 percent">
-                    <span style="--value: 68%"></span>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            <section class="section-block" id="learning-path" aria-labelledby="path-title">
-              <div class="section-heading">
-                <div>
-                  <p class="eyebrow">Learning Path</p>
-                  <h2 id="path-title">Your beginner roadmap</h2>
-                </div>
-              </div>
-
-              <div class="path-grid">
-                <article class="path-card is-complete">
-                  <span class="step-number">01</span>
-                  <h3>Pinyin Basics</h3>
-                  <p>Initials, finals, and syllable rhythm.</p>
-                </article>
-                <article class="path-card is-current">
-                  <span class="step-number">02</span>
-                  <h3>Tones</h3>
-                  <p>Four tones and neutral tone practice.</p>
-                </article>
-                <article class="path-card">
-                  <span class="step-number">03</span>
-                  <h3>Greetings</h3>
-                  <p>First everyday words and phrases.</p>
-                </article>
-              </div>
-            </section>
-
-            <section class="section-block" id="pinyin" aria-labelledby="pinyin-title">
-              <div class="section-heading">
-                <div>
-                  <p class="eyebrow">Pinyin</p>
-                  <h2 id="pinyin-title">Tone practice cards</h2>
-                </div>
-              </div>
-
-              <div class="lesson-card-grid">
-                <article class="lesson-card">
-                  <span class="tone-dot tone-one">ā</span>
-                  <h3>First Tone</h3>
-                  <p>High and steady. Practice with mā, bā, and tā.</p>
-                  <button class="ghost-button" type="button">Start</button>
-                </article>
-                <article class="lesson-card">
-                  <span class="tone-dot tone-two">á</span>
-                  <h3>Second Tone</h3>
-                  <p>Rising tone. Keep your voice light and upward.</p>
-                  <button class="ghost-button" type="button">Start</button>
-                </article>
-                <article class="lesson-card">
-                  <span class="tone-dot tone-three">ǎ</span>
-                  <h3>Third Tone</h3>
-                  <p>Low dipping tone. Slow down and hear the contour.</p>
-                  <button class="ghost-button" type="button">Start</button>
-                </article>
-              </div>
-            </section>
-
-            <section class="section-block" id="vocabulary" aria-labelledby="vocabulary-title">
-              <div class="section-heading">
-                <div>
-                  <p class="eyebrow">Vocabulary</p>
-                  <h2 id="vocabulary-title">Fresh words for today</h2>
-                </div>
-              </div>
-
-              <div class="vocab-grid">
-                <article class="vocab-card">
-                  <div class="vocab-actions">
-                    <button class="icon-button audio-button" type="button" aria-label="Play pronunciation for ni hao">
-                      <svg aria-hidden="true"><use href="#icon-volume"></use></svg>
-                    </button>
-                    <button class="icon-button favorite-button" type="button" aria-label="Add ni hao to favorites">
-                      <svg aria-hidden="true"><use href="#icon-star"></use></svg>
-                    </button>
-                  </div>
-                  <span class="character">你好</span>
-                  <h3>nǐ hǎo</h3>
-                  <p class="meaning">hello</p>
-                  <p class="example">你好，我叫安娜。<span>Hello, my name is Anna.</span></p>
-                </article>
-
-                <article class="vocab-card">
-                  <div class="vocab-actions">
-                    <button class="icon-button audio-button" type="button" aria-label="Play pronunciation for xie xie">
-                      <svg aria-hidden="true"><use href="#icon-volume"></use></svg>
-                    </button>
-                    <button class="icon-button favorite-button" type="button" aria-label="Add xie xie to favorites">
-                      <svg aria-hidden="true"><use href="#icon-star"></use></svg>
-                    </button>
-                  </div>
-                  <span class="character">谢谢</span>
-                  <h3>xiè xie</h3>
-                  <p class="meaning">thank you</p>
-                  <p class="example">谢谢你的帮助。<span>Thank you for your help.</span></p>
-                </article>
-              </div>
-            </section>
-
-            <section class="section-block" id="flashcards" aria-labelledby="flashcards-title">
-              <div class="section-heading">
-                <div>
-                  <p class="eyebrow">Flashcards</p>
-                  <h2 id="flashcards-title">Review with focus</h2>
-                </div>
-              </div>
-
-              <div class="flashcard-area">
-                <button class="flashcard" type="button" aria-label="Flip flashcard">
-                  <span class="flashcard-face flashcard-front">
-                    <span class="character">再见</span>
-                    <span>Review card</span>
-                  </span>
-                  <span class="flashcard-face flashcard-back">
-                    <strong>zài jiàn</strong>
-                    <span>goodbye</span>
-                  </span>
-                </button>
-
-                <div class="flashcard-controls">
-                  <button class="secondary-button" type="button">Previous</button>
-                  <button class="primary-button" type="button">Next</button>
-                </div>
-              </div>
-            </section>
-
-            <section class="section-block" id="quiz" aria-labelledby="quiz-title">
-              <div class="section-heading">
-                <div>
-                  <p class="eyebrow">Quiz</p>
-                  <h2 id="quiz-title">Quick check</h2>
-                </div>
-              </div>
-
-              <div class="quiz-card">
-                <div class="quiz-progress" aria-label="Quiz progress 40 percent">
-                  <span style="--value: 40%"></span>
-                </div>
-                <h3>What does 你好 mean?</h3>
-                <div class="answer-grid">
-                  <button class="answer-button" type="button" data-correct="true">Hello</button>
-                  <button class="answer-button" type="button">Goodbye</button>
-                  <button class="answer-button" type="button">Please</button>
-                  <button class="answer-button" type="button">Teacher</button>
-                </div>
-                <p class="quiz-feedback" aria-live="polite">Choose an answer to check your recall.</p>
-              </div>
-            </section>
-
-            <section class="section-block" id="progress" aria-labelledby="progress-title">
-              <div class="section-heading">
-                <div>
-                  <p class="eyebrow">Progress</p>
-                  <h2 id="progress-title">Learning progress</h2>
-                </div>
-              </div>
-
-              <div class="progress-grid">
-                <article class="progress-card">
-                  <span>Lessons</span>
-                  <strong>7</strong>
-                  <p>Completed this month</p>
-                </article>
-                <article class="progress-card">
-                  <span>Words</span>
-                  <strong>42</strong>
-                  <p>Reviewed from HSK 1</p>
-                </article>
-                <article class="progress-card">
-                  <span>Accuracy</span>
-                  <strong>86%</strong>
-                  <p>Across recent quizzes</p>
-                </article>
-              </div>
-            </section>
-
-            <section class="section-block" aria-labelledby="recommended-title">
-              <div class="section-heading">
-                <div>
-                  <p class="eyebrow">Recommended Lesson</p>
-                  <h2 id="recommended-title">Numbers 1 to 10</h2>
-                </div>
-              </div>
-
-              <article class="recommended-card">
-                <div>
-                  <span class="hanzi-row">一 二 三 四 五</span>
-                  <h3>Learn basic numbers with tones</h3>
-                  <p>Short, useful, and perfect after finishing greetings.</p>
-                </div>
-                <button class="primary-button" type="button">
-                  Preview
-                  <svg aria-hidden="true"><use href="#icon-play"></use></svg>
-                </button>
-              </article>
-            </section>
-          </div>
-
-          <aside class="right-panel" aria-label="Learning summary">
-            <section class="panel-card profile-summary">
-              <div class="ring" aria-label="Overall progress 72 percent">
-                <span>72%</span>
-              </div>
-              <h2>Good morning</h2>
-              <p>Keep your rhythm with one focused Chinese lesson today.</p>
-            </section>
-
-            <section class="panel-card compact-card">
-              <div class="panel-heading">
-                <div>
-                  <p class="eyebrow">Daily Goal</p>
-                  <h2>15 minutes</h2>
-                </div>
-                <span class="soft-count">10/15</span>
-              </div>
-              <div class="mini-progress" aria-label="Daily goal progress 10 of 15 minutes">
-                <span style="--value: 67%"></span>
-              </div>
-              <p>Five more minutes completes today's goal.</p>
-            </section>
-
-            <section class="panel-card compact-card">
-              <p class="eyebrow">Current Lesson</p>
-              <h2>Tone pairs</h2>
-              <p>Practice nǐ hǎo, hěn hǎo, and other useful phrase pairs.</p>
-              <a class="text-link" href="#pinyin">Open pinyin</a>
-            </section>
-
-            <section class="panel-card compact-card">
-              <p class="eyebrow">This Week</p>
-              <div class="mini-chart" aria-label="Weekly learning activity chart">
-                <span style="--height: 42%"></span>
-                <span style="--height: 68%"></span>
-                <span style="--height: 48%"></span>
-                <span style="--height: 84%"></span>
-                <span style="--height: 56%"></span>
-              </div>
-              <p>Strongest day: Thursday pronunciation review.</p>
-            </section>
-          </aside>
-        </main>
-      </div>
+      <section class="page" id="page-settings">
+        <div class="page-title"><h1>Cài đặt</h1><p>Quản lý giao diện, dữ liệu và mục tiêu học hằng ngày.</p></div>
+        <div class="settings-grid">
+          <div class="card setting-card"><h3>Mục tiêu mỗi ngày</h3><p>Số phút bạn muốn duy trì. 10–15 phút phù hợp cho người mới.</p><select class="select" id="dailyGoal" onchange="Settings.setGoal(this.value)"><option value="5">5 phút</option><option value="10">10 phút</option><option value="15">15 phút</option><option value="20">20 phút</option></select></div>
+          <div class="card setting-card"><h3>Âm thanh</h3><p>Điều chỉnh tốc độ giọng đọc tiếng Trung của trình duyệt.</p><select class="select" id="speechRate" onchange="Settings.setRate(this.value)"><option value="0.65">Chậm</option><option value="0.82">Vừa</option><option value="1">Tự nhiên</option></select></div>
+          <div class="card setting-card"><h3>Sao lưu tiến độ</h3><p>Xuất dữ liệu để chuyển sang máy khác hoặc lưu dự phòng.</p><button class="btn btn-outline" onclick="Settings.exportData()"><svg class="ui-icon"><use href="#i-download"/></svg>Xuất JSON</button> <label class="btn btn-outline"><svg class="ui-icon"><use href="#i-upload"/></svg>Nhập JSON<input type="file" accept=".json" hidden onchange="Settings.importData(event)"></label></div>
+          <div class="card setting-card"><h3 style="color:var(--red)">Học lại từ đầu</h3><p>Xóa toàn bộ tiến độ, lỗi sai, lịch ôn và hội thoại AI.</p><button class="btn btn-danger" onclick="Settings.reset()"><svg class="ui-icon"><use href="#i-trash"/></svg>Xóa dữ liệu</button></div>
+        </div>
+      </section>
     </div>
-  </body>
+  </main>
+</div>
+
+<div class="modal" id="searchModal"><div class="modal-box"><div class="modal-head"><h3>Kết quả tìm kiếm</h3><button class="close" onclick="UI.modal(false)" aria-label="Đóng"><svg class="ui-icon"><use href="#i-arrow-left"/></svg></button></div><div id="searchResults"></div></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const icon=(name,cls="")=>`<svg class="ui-icon ${cls}" aria-hidden="true"><use href="#i-${name}"/></svg>`;
+const COURSE = [
+ {id:'u0',title:'Khởi động từ số 0',desc:'Làm quen âm thanh và những câu đầu tiên',lessons:[
+  {id:'l01',title:'Xin chào!',sub:'Chào hỏi và xưng hô',mins:8,skill:'giao tiếp',objectives:['Nói xin chào và tạm biệt','Dùng tôi, bạn đúng ngữ cảnh','Hỏi thăm đơn giản'],vocab:[['你好','nǐ hǎo','xin chào','你好！','Xin chào!'],['我','wǒ','tôi','我是越南人。','Tôi là người Việt Nam.'],['你','nǐ','bạn','你好吗？','Bạn khỏe không?'],['好','hǎo','tốt, khỏe','我很好。','Tôi rất khỏe.'],['再见','zàijiàn','tạm biệt','老师，再见！','Tạm biệt thầy/cô!']],grammar:{title:'Câu chào hỏi cơ bản',formula:'你 + 好 → 你好',explain:'你好 dùng được trong hầu hết tình huống. Thêm 吗 ở cuối câu để biến câu kể thành câu hỏi có/không.',examples:[['你好吗？','Nǐ hǎo ma?','Bạn khỏe không?'],['我很好。','Wǒ hěn hǎo.','Tôi rất khỏe.']]},dialogue:[['A','你好！','Nǐ hǎo!','Xin chào!'],['B','你好！你好吗？','Nǐ hǎo! Nǐ hǎo ma?','Xin chào! Bạn khỏe không?'],['A','我很好，谢谢。','Wǒ hěn hǎo, xièxie.','Tôi khỏe, cảm ơn.']]},
+  {id:'l02',title:'Cảm ơn và xin lỗi',sub:'Phản xạ lịch sự đầu tiên',mins:8,skill:'giao tiếp',objectives:['Nói cảm ơn và không có gì','Xin lỗi đúng lúc','Đáp lại lời xin lỗi'],vocab:[['谢谢','xièxie','cảm ơn','谢谢你。','Cảm ơn bạn.'],['不客气','bú kèqi','không có gì','不客气！','Không có gì!'],['对不起','duìbuqǐ','xin lỗi','对不起，我迟到了。','Xin lỗi, tôi đến muộn.'],['没关系','méi guānxi','không sao','没关系。','Không sao.'],['请','qǐng','mời, vui lòng','请坐。','Mời ngồi.']],grammar:{title:'Cặp câu phản xạ',formula:'谢谢 ↔ 不客气　　对不起 ↔ 没关系',explain:'Học theo cặp giúp bạn phản xạ nhanh hơn thay vì nhớ từng từ rời rạc.',examples:[['谢谢你的帮助。','Xièxie nǐ de bāngzhù.','Cảm ơn sự giúp đỡ của bạn.'],['没关系。','Méi guānxi.','Không sao.']]},dialogue:[['A','对不起！','Duìbuqǐ!','Xin lỗi!'],['B','没关系。','Méi guānxi.','Không sao.'],['A','谢谢！','Xièxie!','Cảm ơn!']]},
+  {id:'l03',title:'Số 0–10',sub:'Đếm, đọc số điện thoại',mins:10,skill:'từ vựng',objectives:['Đếm từ 0 đến 10','Ghép số lớn hơn 10','Đọc từng chữ số'],vocab:[['零','líng','0','零号。','Số 0.'],['一','yī','1','一个人。','Một người.'],['二','èr','2','二月。','Tháng hai.'],['三','sān','3','三本书。','Ba quyển sách.'],['四','sì','4','四点。','Bốn giờ.'],['五','wǔ','5','五块钱。','Năm tệ.'],['六','liù','6','六个人。','Sáu người.'],['七','qī','7','七天。','Bảy ngày.'],['八','bā','8','八岁。','Tám tuổi.'],['九','jiǔ','9','九点。','Chín giờ.'],['十','shí','10','十块钱。','Mười tệ.']],grammar:{title:'Ghép số 11–99',formula:'十 + số = 11–19　　số + 十 = 20, 30…',explain:'11 là 十一, 20 là 二十, 25 là 二十五. Khi đọc số điện thoại, 一 thường đọc là yāo để tránh nghe nhầm.',examples:[['十二','shí èr','12'],['二十五','èrshíwǔ','25']]},dialogue:[['A','你的电话是多少？','Nǐ de diànhuà shì duōshao?','Số điện thoại của bạn là bao nhiêu?'],['B','一三八，五六七八。','Yāo sān bā, wǔ liù qī bā.','138, 5678.']]},
+  {id:'l04',title:'Bạn tên gì?',sub:'Giới thiệu bản thân',mins:10,skill:'ngữ pháp',objectives:['Hỏi và nói tên','Dùng 是 để giới thiệu','Nói rất vui được gặp'],vocab:[['叫','jiào','tên là, gọi là','我叫明。','Tôi tên Minh.'],['名字','míngzi','tên','你叫什么名字？','Bạn tên gì?'],['是','shì','là','我是学生。','Tôi là học sinh.'],['认识','rènshi','quen, biết','很高兴认识你。','Rất vui được gặp bạn.'],['很高兴','hěn gāoxìng','rất vui','我很高兴。','Tôi rất vui.']],grammar:{title:'Giới thiệu với 是 và 叫',formula:'我叫 + tên　　我是 + danh từ',explain:'叫 dùng để nói tên gọi; 是 nối chủ ngữ với danh từ chỉ thân phận, nghề nghiệp, quốc tịch.',examples:[['我叫小明。','Wǒ jiào Xiǎomíng.','Tôi tên Tiểu Minh.'],['我是越南人。','Wǒ shì Yuènán rén.','Tôi là người Việt Nam.']]},dialogue:[['A','你叫什么名字？','Nǐ jiào shénme míngzi?','Bạn tên gì?'],['B','我叫明。你呢？','Wǒ jiào Míng. Nǐ ne?','Tôi tên Minh. Còn bạn?'],['A','我叫李华。很高兴认识你。','Wǒ jiào Lǐ Huá. Hěn gāoxìng rènshi nǐ.','Tôi tên Lý Hoa. Rất vui được gặp bạn.']]}
+ ]},
+ {id:'u1',title:'Phát âm Pinyin nền tảng',desc:'Nghe đúng, đọc đúng trước khi học nhanh',lessons:[
+  {id:'l05',title:'4 thanh điệu',sub:'Phân biệt mā, má, mǎ, mà',mins:10,skill:'phát âm',objectives:['Nhận biết 4 đường thanh','Đọc thanh nhẹ','Tránh nhầm nghĩa vì sai thanh'],vocab:[['妈','mā','mẹ','妈妈很好。','Mẹ rất khỏe.'],['麻','má','cây gai','这是麻。','Đây là cây gai.'],['马','mǎ','ngựa','我喜欢马。','Tôi thích ngựa.'],['骂','mà','mắng','不要骂人。','Đừng mắng người khác.'],['吗','ma','trợ từ hỏi','你好吗？','Bạn khỏe không?']],grammar:{title:'Đường đi của thanh',formula:'1 ngang cao　2 đi lên　3 xuống rồi lên　4 rơi mạnh',explain:'Thanh điệu gắn với cả âm tiết. Hãy bắt chước đường cao độ thay vì đọc theo dấu tiếng Việt.',examples:[['mā → má → mǎ → mà','Đọc chậm rồi tăng tốc',''],['你好 nǐ hǎo → ní hǎo','Hai thanh 3 liền nhau','']]},dialogue:[['A','你好吗？','Nǐ hǎo ma?','Bạn khỏe không?'],['B','我很好。','Wǒ hěn hǎo.','Tôi rất khỏe.']]},
+  {id:'l06',title:'Thanh mẫu',sub:'b p m f · d t n l · g k h',mins:12,skill:'phát âm',objectives:['Phân biệt âm bật hơi','Đặt lưỡi đúng vị trí','Ghép phụ âm với vận mẫu'],vocab:[['八','bā','tám','八个人。','Tám người.'],['怕','pà','sợ','我不怕。','Tôi không sợ.'],['大','dà','to, lớn','很大。','Rất lớn.'],['他','tā','anh ấy','他是老师。','Anh ấy là giáo viên.'],['哥','gē','anh trai','我哥哥。','Anh trai tôi.'],['看','kàn','nhìn, xem','看书。','Đọc sách.']],grammar:{title:'Bật hơi hay không bật hơi',formula:'b / d / g: ít hơi　　p / t / k: bật hơi mạnh',explain:'Đặt một mảnh giấy trước miệng. Khi đọc p, t, k, giấy phải rung rõ; với b, d, g thì ít rung.',examples:[['bā / pā','Giữ nguyên a, đổi độ bật hơi',''],['dà / tà','So sánh d và t','']]},dialogue:[['A','他怕吗？','Tā pà ma?','Anh ấy có sợ không?'],['B','他不怕。','Tā bú pà.','Anh ấy không sợ.']]},
+  {id:'l07',title:'Vận mẫu',sub:'a o e i u ü và âm ghép',mins:12,skill:'phát âm',objectives:['Đọc 6 vận mẫu đơn','Phân biệt u và ü','Luyện ai, ei, ao, ou'],vocab:[['爱','ài','yêu, thích','我爱你。','Tôi yêu bạn.'],['杯','bēi','cốc','一个杯子。','Một cái cốc.'],['好','hǎo','tốt','很好。','Rất tốt.'],['口','kǒu','miệng','三口人。','Gia đình ba người.'],['女','nǚ','nữ','女老师。','Giáo viên nữ.'],['绿','lǜ','xanh lá','绿色。','Màu xanh lá.']],grammar:{title:'Mẹo đọc ü',formula:'Giữ khẩu hình u + phát âm i = ü',explain:'Sau j, q, x, y, hai chấm của ü thường bị lược trong chữ viết pinyin nhưng âm đọc vẫn là ü.',examples:[['女 nǚ','Môi tròn như u, lưỡi đọc i','nữ'],['去 qù','Viết u nhưng đọc ü','đi']]},dialogue:[['A','你喜欢绿色吗？','Nǐ xǐhuan lǜsè ma?','Bạn thích màu xanh lá không?'],['B','我喜欢。','Wǒ xǐhuan.','Tôi thích.']]},
+  {id:'l08',title:'Ghép âm và biến điệu',sub:'Đọc cả cụm tự nhiên',mins:12,skill:'phát âm',objectives:['Ghép thanh mẫu + vận mẫu','Đổi thanh 3 đúng cách','Đọc 不 và 一 tự nhiên'],vocab:[['不','bù','không','我不是老师。','Tôi không phải giáo viên.'],['一','yī','một','一个人。','Một người.'],['你好','nǐ hǎo','xin chào','你好！','Xin chào!'],['不是','bú shì','không phải','他不是学生。','Anh ấy không phải học sinh.'],['一个','yí ge','một cái/người','一个苹果。','Một quả táo.']],grammar:{title:'Ba biến điệu quan trọng',formula:'3 + 3 → 2 + 3　　不 + thanh 4 → bú　　一 đổi theo thanh sau',explain:'Biến điệu chỉ thay đổi cách đọc, không thay đổi dấu pinyin khi viết từ điển.',examples:[['你好','viết nǐ hǎo, đọc gần ní hǎo',''],['不是','bù + shì → bú shì','']]},dialogue:[['A','你是老师吗？','Nǐ shì lǎoshī ma?','Bạn là giáo viên phải không?'],['B','不，我不是老师。','Bù, wǒ bú shì lǎoshī.','Không, tôi không phải giáo viên.']]}
+ ]},
+ {id:'u2',title:'Xây câu căn bản',desc:'Nắm logic ngữ pháp cốt lõi của tiếng Trung',lessons:[
+  {id:'l09',title:'Đây là gì?',sub:'这、那、什么',mins:10,skill:'ngữ pháp',objectives:['Chỉ đây và kia','Hỏi đây là gì','Trả lời bằng 是'],vocab:[['这','zhè','đây, cái này','这是什么？','Đây là gì?'],['那','nà','kia, cái kia','那是我的。','Kia là của tôi.'],['什么','shénme','cái gì','你吃什么？','Bạn ăn gì?'],['书','shū','sách','这是书。','Đây là sách.'],['手机','shǒujī','điện thoại','那是手机。','Kia là điện thoại.']],grammar:{title:'Câu hỏi với 什么',formula:'这 / 那 + 是 + 什么？',explain:'Từ để hỏi đứng đúng vị trí của câu trả lời. Không cần đảo trật tự như tiếng Anh.',examples:[['这是什么？','Zhè shì shénme?','Đây là gì?'],['这是书。','Zhè shì shū.','Đây là sách.']]},dialogue:[['A','这是什么？','Zhè shì shénme?','Đây là gì?'],['B','这是我的手机。','Zhè shì wǒ de shǒujī.','Đây là điện thoại của tôi.']]},
+  {id:'l10',title:'Có hay không có',sub:'有、没有',mins:10,skill:'ngữ pháp',objectives:['Nói có một vật','Phủ định bằng 没有','Hỏi bằng 有…吗'],vocab:[['有','yǒu','có','我有时间。','Tôi có thời gian.'],['没有','méiyǒu','không có','我没有钱。','Tôi không có tiền.'],['钱','qián','tiền','你有钱吗？','Bạn có tiền không?'],['时间','shíjiān','thời gian','我没有时间。','Tôi không có thời gian.'],['朋友','péngyou','bạn bè','我有一个朋友。','Tôi có một người bạn.']],grammar:{title:'Phủ định đặc biệt của 有',formula:'有 → 没有　(không dùng 不有)',explain:'有 diễn tả sở hữu hoặc tồn tại. Muốn nói “không có”, luôn dùng 没有.',examples:[['你有时间吗？','Nǐ yǒu shíjiān ma?','Bạn có thời gian không?'],['我没有时间。','Wǒ méiyǒu shíjiān.','Tôi không có thời gian.']]},dialogue:[['A','你有中国朋友吗？','Nǐ yǒu Zhōngguó péngyou ma?','Bạn có bạn người Trung Quốc không?'],['B','有，我有一个中国朋友。','Yǒu, wǒ yǒu yí ge Zhōngguó péngyou.','Có, tôi có một người bạn Trung Quốc.']]},
+  {id:'l11',title:'Ai, ở đâu, thế nào',sub:'谁、哪儿、怎么样',mins:11,skill:'ngữ pháp',objectives:['Hỏi người bằng 谁','Hỏi nơi chốn bằng 哪儿','Hỏi cảm nhận bằng 怎么样'],vocab:[['谁','shéi','ai','他是谁？','Anh ấy là ai?'],['哪儿','nǎr','ở đâu','你去哪儿？','Bạn đi đâu?'],['怎么样','zěnmeyàng','thế nào','工作怎么样？','Công việc thế nào?'],['这里','zhèlǐ','ở đây','我在这里。','Tôi ở đây.'],['那里','nàlǐ','ở đó','他在那里。','Anh ấy ở đó.']],grammar:{title:'Không đảo từ khi hỏi',formula:'他是老师。→ 他是谁？',explain:'Chỉ thay phần chưa biết bằng từ để hỏi, giữ nguyên vị trí trong câu.',examples:[['你去哪儿？','Nǐ qù nǎr?','Bạn đi đâu?'],['你妈妈怎么样？','Nǐ māma zěnmeyàng?','Mẹ bạn thế nào?']]},dialogue:[['A','他是谁？','Tā shì shéi?','Anh ấy là ai?'],['B','他是我的朋友。','Tā shì wǒ de péngyou.','Anh ấy là bạn tôi.'],['A','他在哪儿？','Tā zài nǎr?','Anh ấy ở đâu?']]},
+  {id:'l12',title:'Lượng từ 个',sub:'Đếm người và đồ vật',mins:10,skill:'ngữ pháp',objectives:['Dùng số + lượng từ','Dùng 个 cho trường hợp phổ biến','Hỏi số lượng với 几'],vocab:[['个','ge','cái/người (lượng từ)','一个人。','Một người.'],['几','jǐ','mấy','几个人？','Mấy người?'],['人','rén','người','三个人。','Ba người.'],['苹果','píngguǒ','táo','两个苹果。','Hai quả táo.'],['学生','xuésheng','học sinh','五个学生。','Năm học sinh.']],grammar:{title:'Công thức đếm danh từ',formula:'Số + lượng từ + danh từ',explain:'Tiếng Trung thường cần lượng từ ở giữa số và danh từ. 个 là lượng từ phổ biến nhất cho người và nhiều vật thông dụng.',examples:[['三个人','sān ge rén','ba người'],['两个苹果','liǎng ge píngguǒ','hai quả táo']]},dialogue:[['A','你家有几个人？','Nǐ jiā yǒu jǐ ge rén?','Nhà bạn có mấy người?'],['B','我家有四个人。','Wǒ jiā yǒu sì ge rén.','Nhà tôi có bốn người.']]}
+ ]},
+ {id:'u3',title:'Đời sống hằng ngày',desc:'Dùng tiếng Trung trong những tình huống thật',lessons:[
+  {id:'l13',title:'Gia đình',sub:'Bố mẹ, anh chị em',mins:11,skill:'từ vựng',objectives:['Giới thiệu thành viên gia đình','Nói của ai với 的','Hỏi nhà có mấy người'],vocab:[['家','jiā','nhà, gia đình','我家有四个人。','Nhà tôi có bốn người.'],['爸爸','bàba','bố','我爸爸是医生。','Bố tôi là bác sĩ.'],['妈妈','māma','mẹ','我妈妈很好。','Mẹ tôi rất khỏe.'],['哥哥','gēge','anh trai','我有一个哥哥。','Tôi có một anh trai.'],['妹妹','mèimei','em gái','她是我妹妹。','Cô ấy là em gái tôi.'],['的','de','của','我的书。','Sách của tôi.']],grammar:{title:'Sở hữu với 的',formula:'Người sở hữu + 的 + đồ vật/người',explain:'Trong quan hệ gia đình gần gũi, 的 đôi khi có thể lược: 我妈妈 = mẹ tôi.',examples:[['我的朋友','wǒ de péngyou','bạn của tôi'],['我妈妈','wǒ māma','mẹ tôi']]},dialogue:[['A','这是你妈妈吗？','Zhè shì nǐ māma ma?','Đây là mẹ bạn phải không?'],['B','是，她是我妈妈。','Shì, tā shì wǒ māma.','Đúng, bà ấy là mẹ tôi.']]},
+  {id:'l14',title:'Ngày và giờ',sub:'Hẹn thời gian',mins:12,skill:'giao tiếp',objectives:['Hỏi mấy giờ','Nói ngày tháng','Hẹn hôm nay hoặc ngày mai'],vocab:[['今天','jīntiān','hôm nay','今天星期一。','Hôm nay thứ Hai.'],['明天','míngtiān','ngày mai','明天见。','Mai gặp.'],['现在','xiànzài','bây giờ','现在几点？','Bây giờ mấy giờ?'],['点','diǎn','giờ','三点。','Ba giờ.'],['分','fēn','phút','三点十分。','Ba giờ mười phút.'],['星期','xīngqī','tuần, thứ','星期五。','Thứ Sáu.']],grammar:{title:'Nói thời gian',formula:'Chủ ngữ + thời gian + động từ',explain:'Từ chỉ thời gian thường đứng sau chủ ngữ và trước động từ: 我今天上班。',examples:[['现在三点。','Xiànzài sān diǎn.','Bây giờ ba giờ.'],['我明天上班。','Wǒ míngtiān shàngbān.','Ngày mai tôi đi làm.']]},dialogue:[['A','现在几点？','Xiànzài jǐ diǎn?','Bây giờ mấy giờ?'],['B','现在两点半。','Xiànzài liǎng diǎn bàn.','Bây giờ hai rưỡi.'],['A','明天见！','Míngtiān jiàn!','Mai gặp!']]},
+  {id:'l15',title:'Ăn uống',sub:'Gọi món đơn giản',mins:12,skill:'giao tiếp',objectives:['Nói muốn ăn/uống gì','Gọi món lịch sự','Hỏi có món nào'],vocab:[['吃','chī','ăn','我吃米饭。','Tôi ăn cơm.'],['喝','hē','uống','我喝水。','Tôi uống nước.'],['水','shuǐ','nước','请喝水。','Mời uống nước.'],['米饭','mǐfàn','cơm','我要米饭。','Tôi muốn cơm.'],['茶','chá','trà','我喜欢喝茶。','Tôi thích uống trà.'],['要','yào','muốn, cần','我要这个。','Tôi muốn cái này.']],grammar:{title:'Gọi món với 要',formula:'我要 + món ăn / đồ uống',explain:'要 trực tiếp và rất thường dùng khi gọi món. Thêm 请 hoặc 谢谢 để lịch sự hơn.',examples:[['我要一杯茶。','Wǒ yào yì bēi chá.','Tôi muốn một cốc trà.'],['你要吃什么？','Nǐ yào chī shénme?','Bạn muốn ăn gì?']]},dialogue:[['A','你要吃什么？','Nǐ yào chī shénme?','Bạn muốn ăn gì?'],['B','我要米饭和鸡肉。','Wǒ yào mǐfàn hé jīròu.','Tôi muốn cơm và thịt gà.'],['A','你喝茶吗？','Nǐ hē chá ma?','Bạn uống trà không?']]},
+  {id:'l16',title:'Mua sắm',sub:'Hỏi giá và số lượng',mins:12,skill:'giao tiếp',objectives:['Hỏi bao nhiêu tiền','Nói đắt/rẻ','Chọn cái này/cái kia'],vocab:[['多少钱','duōshao qián','bao nhiêu tiền','这个多少钱？','Cái này bao nhiêu tiền?'],['块','kuài','tệ, đồng (khẩu ngữ)','十块钱。','Mười tệ.'],['贵','guì','đắt','太贵了。','Đắt quá.'],['便宜','piányi','rẻ','很便宜。','Rất rẻ.'],['买','mǎi','mua','我想买这个。','Tôi muốn mua cái này.'],['太…了','tài…le','quá…','太大了。','To quá.']],grammar:{title:'Nhấn mạnh mức độ với 太…了',formula:'太 + tính từ + 了',explain:'Cấu trúc này biểu đạt “quá…”, có thể là phàn nàn hoặc khen tùy ngữ cảnh.',examples:[['太贵了！','Tài guì le!','Đắt quá!'],['太好了！','Tài hǎo le!','Tuyệt quá!']]},dialogue:[['A','这个多少钱？','Zhège duōshao qián?','Cái này bao nhiêu tiền?'],['B','五十块。','Wǔshí kuài.','Năm mươi tệ.'],['A','太贵了，便宜一点儿吧。','Tài guì le, piányi yìdiǎnr ba.','Đắt quá, bớt một chút nhé.']]}
+ ]},
+ {id:'u4',title:'Di chuyển và hành động',desc:'Nói nơi chốn, khả năng và việc đang làm',lessons:[
+  {id:'l17',title:'Ở đâu và đi đâu',sub:'在、去、来',mins:11,skill:'ngữ pháp',objectives:['Nói đang ở đâu','Nói đi đến đâu','Phân biệt đi và đến'],vocab:[['在','zài','ở, tại','我在家。','Tôi ở nhà.'],['去','qù','đi','我去公司。','Tôi đi công ty.'],['来','lái','đến','他来中国。','Anh ấy đến Trung Quốc.'],['公司','gōngsī','công ty','我在公司。','Tôi ở công ty.'],['学校','xuéxiào','trường học','她去学校。','Cô ấy đi học.'],['家','jiā','nhà','我回家。','Tôi về nhà.']],grammar:{title:'Nơi chốn với 在',formula:'Chủ ngữ + 在 + địa điểm',explain:'在 đứng trước địa điểm. Khi 在 đứng trước động từ, nó có thể mang nghĩa “đang”, sẽ học kỹ ở bài sau.',examples:[['我在家。','Wǒ zài jiā.','Tôi ở nhà.'],['你去哪儿？','Nǐ qù nǎr?','Bạn đi đâu?']]},dialogue:[['A','你在哪儿？','Nǐ zài nǎr?','Bạn ở đâu?'],['B','我在公司。','Wǒ zài gōngsī.','Tôi ở công ty.'],['A','你几点回家？','Nǐ jǐ diǎn huí jiā?','Mấy giờ bạn về nhà?']]},
+  {id:'l18',title:'Phương tiện và đường đi',sub:'Đi xe, rẽ trái, rẽ phải',mins:12,skill:'giao tiếp',objectives:['Nói đi bằng phương tiện gì','Hỏi đường đơn giản','Hiểu trái/phải/phía trước'],vocab:[['坐','zuò','đi bằng, ngồi','我坐地铁。','Tôi đi tàu điện.'],['地铁','dìtiě','tàu điện ngầm','坐地铁去。','Đi bằng tàu điện.'],['车','chē','xe','我的车。','Xe của tôi.'],['左边','zuǒbian','bên trái','在左边。','Ở bên trái.'],['右边','yòubian','bên phải','在右边。','Ở bên phải.'],['前面','qiánmiàn','phía trước','公司在前面。','Công ty ở phía trước.']],grammar:{title:'Nói phương tiện',formula:'坐 + phương tiện + 去 + địa điểm',explain:'坐 dùng cho xe buýt, tàu, máy bay. Với đi bộ, thường dùng 走路.',examples:[['我坐地铁去公司。','Wǒ zuò dìtiě qù gōngsī.','Tôi đi tàu điện đến công ty.'],['学校在左边。','Xuéxiào zài zuǒbian.','Trường ở bên trái.']]},dialogue:[['A','请问，地铁站在哪儿？','Qǐngwèn, dìtiě zhàn zài nǎr?','Xin hỏi, ga tàu điện ở đâu?'],['B','在前面，右边。','Zài qiánmiàn, yòubian.','Ở phía trước, bên phải.']]},
+  {id:'l19',title:'Có thể và biết làm',sub:'会、能、可以',mins:12,skill:'ngữ pháp',objectives:['Nói kỹ năng đã học','Nói khả năng theo điều kiện','Xin phép lịch sự'],vocab:[['会','huì','biết (kỹ năng)','我会说中文。','Tôi biết nói tiếng Trung.'],['能','néng','có thể (khả năng)','我今天不能来。','Hôm nay tôi không thể đến.'],['可以','kěyǐ','có thể, được phép','我可以坐这儿吗？','Tôi có thể ngồi đây không?'],['说','shuō','nói','说中文。','Nói tiếng Trung.'],['写','xiě','viết','我会写汉字。','Tôi biết viết chữ Hán.'],['汉字','Hànzì','chữ Hán','这个汉字。','Chữ Hán này.']],grammar:{title:'Ba cách nói “có thể”',formula:'会 = kỹ năng　能 = điều kiện/năng lực　可以 = cho phép',explain:'Dùng 会 cho điều đã học; 能 khi hoàn cảnh cho phép; 可以 để hỏi hoặc cho phép.',examples:[['我会开车。','Wǒ huì kāichē.','Tôi biết lái xe.'],['这里可以拍照吗？','Zhèlǐ kěyǐ pāizhào ma?','Ở đây được chụp ảnh không?']]},dialogue:[['A','你会说中文吗？','Nǐ huì shuō Zhōngwén ma?','Bạn biết nói tiếng Trung không?'],['B','会一点儿。','Huì yìdiǎnr.','Biết một chút.'],['A','你可以帮我吗？','Nǐ kěyǐ bāng wǒ ma?','Bạn có thể giúp tôi không?']]},
+  {id:'l20',title:'Muốn và thích',sub:'想、喜欢',mins:11,skill:'ngữ pháp',objectives:['Nói mong muốn','Nói sở thích','Hỏi người khác thích gì'],vocab:[['想','xiǎng','muốn, nghĩ','我想去中国。','Tôi muốn đi Trung Quốc.'],['喜欢','xǐhuan','thích','我喜欢中文。','Tôi thích tiếng Trung.'],['听','tīng','nghe','我喜欢听音乐。','Tôi thích nghe nhạc.'],['看','kàn','xem, nhìn','我想看电影。','Tôi muốn xem phim.'],['音乐','yīnyuè','âm nhạc','听音乐。','Nghe nhạc.'],['电影','diànyǐng','phim','看电影。','Xem phim.']],grammar:{title:'想 + động từ, 喜欢 + danh từ/động từ',formula:'想 + làm gì　　喜欢 + cái gì / làm gì',explain:'想 thiên về mong muốn tại thời điểm nói; 喜欢 diễn tả sở thích tương đối ổn định.',examples:[['我想喝茶。','Wǒ xiǎng hē chá.','Tôi muốn uống trà.'],['我喜欢看电影。','Wǒ xǐhuan kàn diànyǐng.','Tôi thích xem phim.']]},dialogue:[['A','你喜欢做什么？','Nǐ xǐhuan zuò shénme?','Bạn thích làm gì?'],['B','我喜欢听音乐。你呢？','Wǒ xǐhuan tīng yīnyuè. Nǐ ne?','Tôi thích nghe nhạc. Còn bạn?'],['A','我喜欢看电影。','Wǒ xǐhuan kàn diànyǐng.','Tôi thích xem phim.']]}
+ ]},
+ {id:'u5',title:'Giao tiếp thực tế',desc:'Kết nối kiến thức thành hội thoại hoàn chỉnh',lessons:[
+  {id:'l21',title:'Đang làm gì?',sub:'在 + động từ',mins:12,skill:'ngữ pháp',objectives:['Nói hành động đang diễn ra','Hỏi người khác đang làm gì','Phủ định bằng 没在'],vocab:[['工作','gōngzuò','làm việc, công việc','我在工作。','Tôi đang làm việc.'],['学习','xuéxí','học tập','他在学习中文。','Anh ấy đang học tiếng Trung.'],['做','zuò','làm','你在做什么？','Bạn đang làm gì?'],['睡觉','shuìjiào','ngủ','孩子在睡觉。','Đứa trẻ đang ngủ.'],['打电话','dǎ diànhuà','gọi điện','她在打电话。','Cô ấy đang gọi điện.']],grammar:{title:'Hành động đang diễn ra',formula:'Chủ ngữ + 在 + động từ + tân ngữ',explain:'Phủ định bằng 没(有)在, không dùng 不在 nếu muốn nói “không đang làm”.',examples:[['我在学习。','Wǒ zài xuéxí.','Tôi đang học.'],['他没在工作。','Tā méi zài gōngzuò.','Anh ấy không đang làm việc.']]},dialogue:[['A','你在做什么？','Nǐ zài zuò shénme?','Bạn đang làm gì?'],['B','我在学习中文。','Wǒ zài xuéxí Zhōngwén.','Tôi đang học tiếng Trung.'],['A','加油！','Jiāyóu!','Cố lên!']]},
+  {id:'l22',title:'Đã làm rồi',sub:'Trợ từ 了',mins:12,skill:'ngữ pháp',objectives:['Nói hành động đã hoàn thành','Hiểu 了 cuối câu','Nói chưa làm bằng 还没'],vocab:[['了','le','rồi (hoàn thành/thay đổi)','我吃饭了。','Tôi ăn cơm rồi.'],['昨天','zuótiān','hôm qua','我昨天去了。','Hôm qua tôi đã đi.'],['已经','yǐjīng','đã','我已经到了。','Tôi đã đến rồi.'],['还没','hái méi','vẫn chưa','我还没吃饭。','Tôi vẫn chưa ăn.'],['到','dào','đến','他到了。','Anh ấy đến rồi.']],grammar:{title:'Hoàn thành với 了',formula:'Động từ + 了　　Chưa làm: 还没 + động từ',explain:'了 không hoàn toàn tương đương thì quá khứ; nó thường đánh dấu sự hoàn thành hoặc thay đổi trạng thái.',examples:[['我买了一个手机。','Wǒ mǎi le yí ge shǒujī.','Tôi đã mua một chiếc điện thoại.'],['我还没买。','Wǒ hái méi mǎi.','Tôi vẫn chưa mua.']]},dialogue:[['A','你吃饭了吗？','Nǐ chīfàn le ma?','Bạn ăn cơm chưa?'],['B','我已经吃了。','Wǒ yǐjīng chī le.','Tôi ăn rồi.'],['A','我还没吃。','Wǒ hái méi chī.','Tôi vẫn chưa ăn.']]},
+  {id:'l23',title:'Giao tiếp công ty',sub:'Đi làm, báo cáo, nhờ giúp',mins:13,skill:'giao tiếp',objectives:['Nói chức vụ và nơi làm','Báo đang làm việc gì','Nhờ đồng nghiệp giúp đỡ'],vocab:[['上班','shàngbān','đi làm','我八点上班。','Tôi đi làm lúc tám giờ.'],['下班','xiàbān','tan làm','我五点下班。','Tôi tan làm lúc năm giờ.'],['同事','tóngshì','đồng nghiệp','他是我的同事。','Anh ấy là đồng nghiệp tôi.'],['经理','jīnglǐ','quản lý','经理在开会。','Quản lý đang họp.'],['帮忙','bāngmáng','giúp đỡ','请帮个忙。','Vui lòng giúp một chút.'],['完成','wánchéng','hoàn thành','工作完成了。','Công việc đã hoàn thành.']],grammar:{title:'Nhờ giúp lịch sự',formula:'请 + người + 帮我 + động từ',explain:'请 làm câu mềm và lịch sự hơn. Khi báo cáo, có thể dùng 已经…了 để nhấn mạnh đã hoàn thành.',examples:[['请帮我看一下。','Qǐng bāng wǒ kàn yíxià.','Vui lòng xem giúp tôi một chút.'],['我已经完成了。','Wǒ yǐjīng wánchéng le.','Tôi đã hoàn thành rồi.']]},dialogue:[['A','这个工作完成了吗？','Zhège gōngzuò wánchéng le ma?','Công việc này xong chưa?'],['B','还没，请再给我十分钟。','Hái méi, qǐng zài gěi wǒ shí fēnzhōng.','Chưa, vui lòng cho tôi thêm mười phút.'],['A','好的，需要帮忙吗？','Hǎo de, xūyào bāngmáng ma?','Được, có cần giúp không?']]},
+  {id:'l24',title:'Kiểm tra tổng hợp A0',sub:'Hội thoại từ chào hỏi đến công việc',mins:15,skill:'tổng hợp',objectives:['Kết hợp mẫu câu đã học','Phản xạ nghe hiểu căn bản','Hoàn thành hội thoại ngắn'],vocab:[['中文','Zhōngwén','tiếng Trung','我会说一点儿中文。','Tôi biết nói một chút tiếng Trung.'],['一起','yìqǐ','cùng nhau','我们一起学习。','Chúng ta cùng học.'],['问题','wèntí','vấn đề, câu hỏi','我有一个问题。','Tôi có một câu hỏi.'],['明白','míngbai','hiểu','我明白了。','Tôi hiểu rồi.'],['慢一点','màn yìdiǎn','chậm một chút','请说慢一点。','Vui lòng nói chậm một chút.'],['再说一遍','zài shuō yí biàn','nói lại lần nữa','请再说一遍。','Vui lòng nói lại lần nữa.']],grammar:{title:'Chiến lược giao tiếp khi chưa hiểu',formula:'请说慢一点。／请再说一遍。／我不明白。',explain:'Người mới không cần hiểu 100%. Hãy dùng ba câu cứu nguy này để duy trì hội thoại và học ngay trong tình huống thật.',examples:[['我不明白。','Wǒ bù míngbai.','Tôi không hiểu.'],['请再说一遍。','Qǐng zài shuō yí biàn.','Vui lòng nói lại lần nữa.']]},dialogue:[['A','你好，你会说中文吗？','Nǐ hǎo, nǐ huì shuō Zhōngwén ma?','Xin chào, bạn biết nói tiếng Trung không?'],['B','会一点儿。请说慢一点。','Huì yìdiǎnr. Qǐng shuō màn yìdiǎn.','Biết một chút. Vui lòng nói chậm một chút.'],['A','没问题。我们一起学习。','Méi wèntí. Wǒmen yìqǐ xuéxí.','Không vấn đề. Chúng ta cùng học.']]}
+ ]}
+];
+
+const ALL_LESSONS = COURSE.flatMap(u=>u.lessons.map(l=>({...l,unitId:u.id,unitTitle:u.title})));
+const WORDS = [];
+const wordMap = new Map();
+ALL_LESSONS.forEach(l=>l.vocab.forEach((v,i)=>{const key=v[0];if(!wordMap.has(key)){const w={id:'w'+(WORDS.length+1),zh:v[0],py:v[1],vi:v[2],exZh:v[3],exVi:v[4],lessonId:l.id,skill:l.skill};WORDS.push(w);wordMap.set(key,w)}}));
+
+const DB={KEY:'hanzigo_ai_v2',_memory:null,defaults(){return{version:2,xp:0,streak:1,lastDate:today(),completed:[],lessonScores:{},currentLesson:'l01',learnedWords:[],reviews:{},mistakes:{},answers:0,correct:0,activity:{},reviewedToday:0,reviewedDate:today(),goal:10,speechRate:.82,theme:'light',showPinyin:true,ai:{key:'',model:'gemini-3.6-flash'},chat:[]}},storage(){try{return window.localStorage}catch(e){return null}},load(){let d=null;const st=this.storage();if(st){try{d=JSON.parse(st.getItem(this.KEY)||'null')}catch(e){}}if(!d&&this._memory)d=JSON.parse(JSON.stringify(this._memory));d={...this.defaults(),...(d||{})};if(d.reviewedDate!==today()){d.reviewedToday=0;d.reviewedDate=today()}if(d.lastDate!==today()){const diff=Math.round((new Date(today())-new Date(d.lastDate))/86400000);if(diff===1)d.streak++;else if(diff>1)d.streak=1;d.lastDate=today();this.save(d)}return d},save(d){this._memory=JSON.parse(JSON.stringify(d));const st=this.storage();if(st){try{st.setItem(this.KEY,JSON.stringify(d))}catch(e){}}},update(fn){const d=this.load();fn(d);this.save(d);if(typeof App!=='undefined')App.refresh();return d}};
+function localDate(d=new Date()){const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,'0'),day=String(d.getDate()).padStart(2,'0');return `${y}-${m}-${day}`}function today(){return localDate()}function addDays(n){const d=new Date();d.setDate(d.getDate()+n);return localDate(d)}function shuffle(a){return [...a].sort(()=>Math.random()-.5)}function esc(s){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
+
+const Audio={speak(text,rate){if(!('speechSynthesis'in window)){UI.toast('Trình duyệt không hỗ trợ đọc âm thanh');return}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='zh-CN';u.rate=rate||DB.load().speechRate;const voices=speechSynthesis.getVoices();const zh=voices.find(v=>/zh|Chinese/i.test(v.lang+' '+v.name));if(zh)u.voice=zh;speechSynthesis.speak(u)},listen(expected){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){UI.toast('Chrome trên máy này chưa hỗ trợ nhận diện giọng nói');return}const r=new SR();r.lang='zh-CN';r.interimResults=false;r.onstart=()=>UI.toast('Hãy nói ngay...');r.onerror=()=>UI.toast('Không nghe rõ, hãy thử lại');r.onresult=e=>{const heard=e.results[0][0].transcript;const clean=s=>s.replace(/[，。？！,.!?\s]/g,'');const ok=clean(heard).includes(clean(expected))||clean(expected).includes(clean(heard));UI.alertSpeech(heard,expected,ok)};r.start()}};
+
+const UI={toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(this.tt);this.tt=setTimeout(()=>t.classList.remove('show'),2400)},modal(open){document.getElementById('searchModal').classList.toggle('open',open)},alertSpeech(heard,expected,ok){const text=ok?`Rất tốt! Máy nghe được: ${heard}`:`Máy nghe được: ${heard}. Hãy nghe mẫu và thử lại.`;this.toast(text);if(ok)DB.update(d=>{d.xp+=5;d.activity[today()]=(d.activity[today()]||0)+1})},pct(a,b){return b?Math.round(a/b*100):0}};
+
+const App={page:'home',init(){document.querySelectorAll('.nav-btn').forEach(b=>b.onclick=()=>this.go(b.dataset.page));document.getElementById('menuBtn').onclick=()=>this.mobile(true);document.getElementById('mobileOverlay').onclick=()=>this.mobile(false);document.getElementById('themeBtn').onclick=()=>this.toggleTheme();document.getElementById('globalSearch').addEventListener('keydown',e=>{if(e.key==='Enter')this.search(e.target.value)});document.getElementById('chatInput').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();AITutor.send()}});this.migrateOld();const d=DB.load();document.documentElement.dataset.theme=d.theme;document.getElementById('dailyGoal').value=d.goal;document.getElementById('speechRate').value=d.speechRate;document.getElementById('aiKey').value=d.ai.key||'';document.getElementById('aiModel').value=d.ai.model||'gemini-3.6-flash';this.refresh();this.go('home')},migrateOld(){try{const st=DB.storage();if(!st||st.getItem(DB.KEY))return;const old=JSON.parse(st.getItem('chinese_learning_app_data_v1')||'null');if(old){const d=DB.defaults();d.xp=old.xp||0;d.streak=old.streak||1;d.theme=old.theme||'light';DB.save(d)}}catch(e){}},mobile(open){document.getElementById('sidebar').classList.toggle('open',open);document.getElementById('mobileOverlay').classList.toggle('show',open)},go(page){this.page=page;document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+page)?.classList.add('active');document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.page===page));this.mobile(false);window.scrollTo(0,0);if(page==='roadmap')Roadmap.render();if(page==='review')Review.start();if(page==='vocabulary')Vocab.render();if(page==='tutor')AITutor.render();if(page==='progress')Progress.render()},refresh(){const d=DB.load();document.getElementById('streakTop').textContent=d.streak;document.getElementById('xpTop').textContent=d.xp;const due=Review.dueWords().length;document.getElementById('navDue').textContent=due?due:'';document.getElementById('dueHome').textContent=due;document.getElementById('lessonsHome').textContent=`${d.completed.length} / ${ALL_LESSONS.length}`;document.getElementById('wordsHome').textContent=d.learnedWords.length;document.getElementById('accuracyHome').textContent=UI.pct(d.correct,d.answers)+'%';const doneToday=d.activity[today()]||0;const target=Math.max(3,Math.ceil(d.goal/3));const pct=Math.min(100,Math.round(doneToday/target*100));document.getElementById('dailyPct').textContent=pct+'%';document.getElementById('dailyRing').style.setProperty('--angle',(pct*3.6)+'deg');document.getElementById('dailyBar').style.width=pct+'%';document.getElementById('todayText').textContent=`${doneToday}/${target} hoạt động · ${due} từ cần ôn`;this.renderNext();if(this.page==='roadmap')Roadmap.render()},nextLesson(){const d=DB.load();return ALL_LESSONS.find(l=>!d.completed.includes(l.id))||ALL_LESSONS.at(-1)},continueLearning(){const l=this.nextLesson();Lesson.start(l.id)},renderNext(){const l=this.nextLesson(),d=DB.load(),done=d.completed.includes(l.id);document.getElementById('nextLessonCard').innerHTML=`<div class="card hover today-card" style="cursor:pointer" onclick="Lesson.start('${l.id}')"><div class="lesson-badge">${ALL_LESSONS.indexOf(l)+1}</div><div class="today-info"><h3>${esc(l.title)}</h3><p>${esc(l.sub)} · ${l.mins} phút · ${l.vocab.length} từ mới</p><div class="progress"><div style="width:${done?100:0}%"></div></div></div><button class="btn btn-primary">${done?'Học lại':'Bắt đầu'} ${icon('arrow-right')}</button></div>`},toggleTheme(){DB.update(d=>{d.theme=d.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=d.theme})},search(q){q=q.trim().toLowerCase();if(!q)return;const wr=WORDS.filter(w=>[w.zh,w.py,w.vi,w.exZh,w.exVi].some(x=>x.toLowerCase().includes(q))).slice(0,20);const lr=ALL_LESSONS.filter(l=>(l.title+' '+l.sub).toLowerCase().includes(q)).slice(0,8);document.getElementById('searchResults').innerHTML=(lr.map(l=>`<div class="mistake-item" style="cursor:pointer" onclick="UI.modal(false);Lesson.start('${l.id}')"><div><b>${esc(l.title)}</b><div style="font-size:12px;color:var(--muted)">${esc(l.sub)}</div></div><span>${icon('arrow-right','sm')}</span></div>`).join('')+wr.map(w=>`<div class="mistake-item"><div><b class="zh" style="font-size:20px;color:var(--primary)">${w.zh}</b> <span style="color:#e36a18">${w.py}</span><div style="font-size:12px">${esc(w.vi)}</div></div><button class="btn btn-sm btn-outline" onclick="Audio.speak('${w.zh}')" aria-label="Nghe phát âm">${icon('volume')}</button></div>`).join(''))||'<div class="empty">Không tìm thấy kết quả.</div>';UI.modal(true)}};
+
+const Roadmap={render(){const d=DB.load();let global=0;document.getElementById('roadmap').innerHTML=COURSE.map((u,ui)=>{const nodes=u.lessons.map((l,li)=>{const index=global++;const complete=d.completed.includes(l.id);const unlocked=index===0||d.completed.includes(ALL_LESSONS[index-1].id);const status=complete?`<span class="lesson-status done">${icon('check','sm')}</span>`:unlocked?`<span class="lesson-status ready">${icon('play','sm')}</span>`:`<span class="lesson-status">${icon('lock','sm')}</span>`;return `<div class="lesson-node ${complete?'completed':''} ${unlocked?'':'locked'}" onclick="${unlocked?`Lesson.start('${l.id}')`:`UI.toast('Hoàn thành bài trước để mở khóa')`}"><div class="lesson-top"><div class="lesson-badge">${complete?icon('check','sm'):index+1}</div>${status}</div><h4>${esc(l.title)}</h4><p>${esc(l.sub)}</p><div class="lesson-meta"><span>${l.mins} phút</span><span>+${30+l.vocab.length*2} XP</span></div></div>`}).join('');return `<div class="unit"><div class="unit-head"><div class="unit-no">${ui+1}</div><div><h3>${esc(u.title)}</h3><p>${esc(u.desc)}</p></div></div><div class="lesson-row">${nodes}</div></div>`}).join('')}};
+
+const Lesson={lesson:null,steps:[],index:0,state:{},start(id){const l=ALL_LESSONS.find(x=>x.id===id);if(!l)return;const idx=ALL_LESSONS.indexOf(l),d=DB.load();if(idx>0&&!d.completed.includes(ALL_LESSONS[idx-1].id)){UI.toast('Hãy hoàn thành bài trước');return}this.lesson=l;this.steps=this.build(l);this.index=0;this.state={};DB.update(x=>x.currentLesson=id);App.go('lesson');this.render()},build(l){const words=l.vocab.map(v=>wordMap.get(v[0]));const quizWords=shuffle(words).slice(0,Math.min(4,words.length));const listen=shuffle(words)[0];const arrange=l.dialogue[0][1];return[{type:'intro'},{type:'vocab',words,pos:0},{type:'grammar'},{type:'dialogue'},{type:'listen',word:listen},{type:'meaning',word:quizWords[0]},{type:'pinyin',word:quizWords[1]||quizWords[0]},{type:'arrange',sentence:arrange},{type:'speak',line:l.dialogue.at(-1)[1]},{type:'finish'}]},render(){const n=this.steps.length;document.getElementById('lessonStepbar').innerHTML=this.steps.map((_,i)=>`<span class="step-dot ${i<this.index?'done':i===this.index?'active':''}"></span>`).join('');document.getElementById('lessonStepText').textContent=`${this.index+1}/${n}`;document.getElementById('lessonPrev').style.visibility=this.index?'visible':'hidden';document.getElementById('lessonFeedback').innerHTML='';const s=this.steps[this.index];const c=document.getElementById('lessonContent');document.getElementById('lessonNext').innerHTML=this.index===n-1?`Về lộ trình ${icon('map')}`:`Tiếp tục ${icon('arrow-right')}`;document.getElementById('lessonNext').disabled=false;if(s.type==='intro')c.innerHTML=this.intro();if(s.type==='vocab')c.innerHTML=this.vocab(s);if(s.type==='grammar')c.innerHTML=this.grammar();if(s.type==='dialogue')c.innerHTML=this.dialogue();if(s.type==='listen')c.innerHTML=this.listen(s);if(s.type==='meaning')c.innerHTML=this.choice(s,'meaning');if(s.type==='pinyin')c.innerHTML=this.choice(s,'pinyin');if(s.type==='arrange')c.innerHTML=this.arrange(s);if(s.type==='speak')c.innerHTML=this.speak(s);if(s.type==='finish')c.innerHTML=this.finish();if(['listen','meaning','pinyin','arrange'].includes(s.type)){document.getElementById('lessonNext').disabled=true;document.getElementById('lessonNext').style.opacity=.5}else document.getElementById('lessonNext').style.opacity=1},intro(){const l=this.lesson;return `<div class="lesson-kicker">${esc(l.unitTitle)} · Bài ${ALL_LESSONS.indexOf(l)+1}</div><h2>${esc(l.title)}</h2><p class="lesson-desc">${esc(l.sub)} · khoảng ${l.mins} phút</p><div class="objective-list">${l.objectives.map(x=>`<div class="objective"><span class="objective-icon">${icon('check','sm')}</span><span>${esc(x)}</span></div>`).join('')}</div><div class="notice">Mẹo: dùng nút nghe và nhắc lại thành tiếng. Học chủ động giúp nhớ lâu hơn chỉ nhìn và đọc thầm.</div>`},vocab(s){const w=s.words[s.pos];return `<div class="lesson-kicker">Từ mới ${s.pos+1}/${s.words.length}</div><div class="word-showcase"><div class="word-zh">${w.zh}</div><div class="word-py">${w.py}</div><div class="word-vi">${esc(w.vi)}</div><div class="word-example"><div class="zh" style="font-size:20px;font-weight:600">${w.exZh}</div><div style="color:var(--muted);font-size:13px">${esc(w.exVi)}</div></div><div class="word-actions"><button class="btn btn-outline" onclick="Audio.speak('${w.zh}')">${icon('volume')}Nghe từ</button><button class="btn btn-outline" onclick="Audio.speak('${w.exZh}')">${icon('volume')}Nghe câu</button><button class="btn btn-soft" onclick="Audio.listen('${w.zh}')">${icon('mic')}Nói lại</button></div></div><div style="display:flex;justify-content:space-between;margin-top:20px"><button class="btn btn-outline btn-sm" onclick="Lesson.vocabMove(-1)" ${s.pos===0?'disabled':''}>${icon('arrow-left')}Từ trước</button><button class="btn btn-primary btn-sm" onclick="Lesson.vocabMove(1)">${s.pos===s.words.length-1?'Xong từ mới':'Từ tiếp'}</button></div>`},vocabMove(dir){const s=this.steps[this.index];if(dir>0&&s.pos===s.words.length-1){this.next();return}s.pos=Math.max(0,Math.min(s.words.length-1,s.pos+dir));this.render()},grammar(){const g=this.lesson.grammar;return `<div class="lesson-kicker">Mẫu câu cốt lõi</div><h2>${esc(g.title)}</h2><div class="grammar-box"><div class="formula">${g.formula}</div><p>${esc(g.explain)}</p></div><div class="grid grid-2">${g.examples.map(e=>`<div class="card" style="padding:15px"><div class="zh" style="font-size:20px;font-weight:700">${e[0]}</div><div style="color:#e36a18;font-size:13px">${e[1]}</div><div style="color:var(--muted);font-size:13px">${e[2]}</div><button class="btn btn-sm btn-outline" style="margin-top:8px" onclick="Audio.speak('${e[0]}')">${icon('volume')}Nghe</button></div>`).join('')}</div>`},dialogue(){return `<div class="lesson-kicker">Hội thoại trong ngữ cảnh</div><h2>Nghe và bắt chước</h2><p class="lesson-desc">Nghe toàn đoạn trước, sau đó nghe từng câu.</p><button class="btn btn-primary btn-sm" style="margin-top:13px" onclick="Lesson.playDialogue()">${icon('play')}Nghe toàn đoạn</button><div class="dialogue">${this.lesson.dialogue.map((x,i)=>`<div class="bubble ${i%2?'right':''}" onclick="Audio.speak('${x[1]}')"><b>${x[0]}</b><div class="cn">${x[1]}</div><div class="py">${x[2]}</div><div class="vi">${x[3]}</div></div>`).join('')}</div>`},playDialogue(){let i=0;const lines=this.lesson.dialogue;const next=()=>{if(i>=lines.length)return;const u=new SpeechSynthesisUtterance(lines[i++][1]);u.lang='zh-CN';u.rate=DB.load().speechRate;u.onend=next;speechSynthesis.speak(u)};speechSynthesis.cancel();next()},optionsFor(w,field){const value=field==='meaning'?w.vi:w.py;const pool=shuffle(WORDS.filter(x=>x.id!==w.id)).slice(0,3).map(x=>field==='meaning'?x.vi:x.py);return shuffle([value,...pool])},listen(s){s.options=s.options||this.optionsFor(s.word,'meaning');return `<div class="question"><div class="lesson-kicker">Luyện nghe</div><h2>Nghe và chọn nghĩa đúng</h2><button class="btn btn-primary" style="margin-top:16px" onclick="Audio.speak('${s.word.zh}',.68)">${icon('volume')}Phát âm</button></div><div class="options">${s.options.map((o,i)=>`<button class="option" onclick="Lesson.answerChoice(this,'${esc(o)}','${esc(s.word.vi)}','${s.word.id}')">${esc(o)}</button>`).join('')}</div>`},choice(s,type){const ask=type==='meaning'?`“${s.word.zh}” có nghĩa là gì?`:`Pinyin đúng của “${s.word.zh}” là gì?`;const answer=type==='meaning'?s.word.vi:s.word.py;s.options=s.options||this.optionsFor(s.word,type);return `<div class="question"><div class="lesson-kicker">Kiểm tra nhanh</div><h3>${esc(ask)}</h3>${type==='pinyin'?`<button class="btn btn-sm btn-outline" style="margin-top:9px" onclick="Audio.speak('${s.word.zh}')">${icon('volume')}Nghe</button>`:''}</div><div class="options">${s.options.map(o=>`<button class="option" onclick="Lesson.answerChoice(this,'${esc(o)}','${esc(answer)}','${s.word.id}')">${esc(o)}</button>`).join('')}</div>`},answerChoice(btn,value,answer,wordId){if(this.state['answered'+this.index])return;this.state['answered'+this.index]=true;const ok=value===answer;btn.classList.add(ok?'correct':'wrong');btn.parentElement.querySelectorAll('.option').forEach(x=>{if(x.textContent.trim()===answer)x.classList.add('correct')});this.record(wordId,ok);this.feedback(ok,ok?'Chính xác! Bạn đang làm rất tốt.':`Đáp án đúng: ${answer}`);this.unlockNext()},record(wordId,ok){DB.update(d=>{d.answers++;if(ok)d.correct++;else if(wordId)d.mistakes[wordId]=(d.mistakes[wordId]||0)+1;d.activity[today()]=(d.activity[today()]||0)+1})},feedback(ok,text){document.getElementById('lessonFeedback').innerHTML=`<div class="feedback ${ok?'good':'bad'}">${esc(text)}</div>`},unlockNext(){const b=document.getElementById('lessonNext');b.disabled=false;b.style.opacity=1},arrange(s){if(!s.tokens){s.tokens=shuffle(s.sentence.replace(/[，。？！]/g,'').split('').filter(Boolean));s.answer=[]}return `<div class="question"><div class="lesson-kicker">Sắp xếp câu</div><h3>Tạo lại câu đúng</h3><p class="prompt">${esc(this.lesson.dialogue[0][3])}</p></div><div class="arrange-answer" id="arrangeAnswer">${s.answer.map((t,i)=>`<button class="token" onclick="Lesson.moveToken('back',${i})">${t}</button>`).join('')}</div><div class="arrange-bank">${s.tokens.map((t,i)=>`<button class="token" onclick="Lesson.moveToken('use',${i})">${t}</button>`).join('')}</div><button class="btn btn-primary" onclick="Lesson.checkArrange()">Kiểm tra câu</button>`},moveToken(type,i){const s=this.steps[this.index];if(type==='use')s.answer.push(s.tokens.splice(i,1)[0]);else s.tokens.push(s.answer.splice(i,1)[0]);this.render()},checkArrange(){const s=this.steps[this.index];const clean=x=>x.replace(/[，。？！\s]/g,'');const ok=clean(s.answer.join(''))===clean(s.sentence);this.record(null,ok);this.feedback(ok,ok?'Câu hoàn toàn chính xác!':`Thứ tự đúng: ${s.sentence}`);if(ok)this.unlockNext();else{setTimeout(()=>{s.tokens=shuffle(s.sentence.replace(/[，。？！]/g,'').split('').filter(Boolean));s.answer=[];this.render()},1100)}},speak(s){return `<div class="question"><div class="lesson-kicker">Luyện nói</div><h2>Nghe rồi nói lại</h2></div><div class="word-showcase"><div class="zh" style="font-size:34px;font-weight:700">${s.line}</div><div class="word-actions"><button class="btn btn-outline" onclick="Audio.speak('${s.line}',.68)">${icon('volume')}Nghe mẫu</button><button class="btn btn-primary" onclick="Audio.listen('${s.line}')">${icon('mic')}Bắt đầu nói</button></div><p class="lesson-desc" style="margin-top:20px">Tính năng nhận diện giọng nói phụ thuộc trình duyệt. Dù máy nhận chưa chính xác, hãy ưu tiên bắt chước nhịp và thanh điệu.</p></div>`},finish(){const d=DB.load(),already=d.completed.includes(this.lesson.id);const score=UI.pct(d.correct,d.answers);return `<div style="text-align:center;padding:35px 10px"><div class="empty-illustration">${icon(already?'repeat':'trophy','xl')}</div><h2>${already?'Bạn đã ôn lại bài học!':'Hoàn thành bài học!'}</h2><p class="lesson-desc">${esc(this.lesson.title)}</p><div class="grid grid-3" style="margin-top:25px"><div class="card"><b style="font-size:22px">+${already?10:30+this.lesson.vocab.length*2}</b><div style="font-size:12px;color:var(--muted)">XP</div></div><div class="card"><b style="font-size:22px">${this.lesson.vocab.length}</b><div style="font-size:12px;color:var(--muted)">Từ mới</div></div><div class="card"><b style="font-size:22px">${score}%</b><div style="font-size:12px;color:var(--muted)">Độ chính xác chung</div></div></div><button class="btn btn-green" style="margin-top:24px" onclick="App.continueLearning()">Học bài tiếp theo ${icon('arrow-right')}</button></div>`},complete(){const l=this.lesson;DB.update(d=>{const already=d.completed.includes(l.id);if(!already){d.completed.push(l.id);d.xp+=30+l.vocab.length*2} else d.xp+=10;l.vocab.forEach(v=>{const w=wordMap.get(v[0]);if(!d.learnedWords.includes(w.id))d.learnedWords.push(w.id);if(!d.reviews[w.id])d.reviews[w.id]={due:today(),interval:0,ease:2.5,reps:0}});d.activity[today()]=(d.activity[today()]||0)+2;const ni=Math.min(ALL_LESSONS.length-1,ALL_LESSONS.indexOf(l)+1);d.currentLesson=ALL_LESSONS[ni].id})},next(){if(this.index===this.steps.length-2)this.complete();if(this.index>=this.steps.length-1){App.go('roadmap');return}this.index++;this.render()},prev(){if(this.index>0){this.index--;this.render()}},exit(){if(confirm('Thoát bài học? Tiến độ trong bài hiện tại chưa được lưu.'))App.go('roadmap')}};
+
+const Review={queue:[],index:0,revealed:false,dueWords(){const d=DB.load();return d.learnedWords.map(id=>WORDS.find(w=>w.id===id)).filter(Boolean).filter(w=>!d.reviews[w.id]||d.reviews[w.id].due<=today()).sort((a,b)=>(d.mistakes[b.id]||0)-(d.mistakes[a.id]||0))},start(){this.queue=this.dueWords();this.index=0;this.revealed=false;this.render()},render(){const d=DB.load();document.getElementById('dueReview').textContent=this.queue.length-this.index;document.getElementById('reviewedToday').textContent=d.reviewedToday;const c=document.getElementById('reviewMain');if(this.index>=this.queue.length){c.innerHTML=`<div class="empty"><div class="empty-illustration">${icon('check','xl')}</div><h2>Đã ôn xong hôm nay</h2><p>Quay lại sau khi có từ đến hạn hoặc tiếp tục học bài mới.</p><button class="btn btn-primary" style="margin-top:16px" onclick="App.continueLearning()">Học bài mới ${icon('arrow-right')}</button></div>`;return}const w=this.queue[this.index];c.innerHTML=`<div class="lesson-kicker">Thẻ ${this.index+1}/${this.queue.length}</div><div class="word-zh">${w.zh}</div><button class="btn btn-outline btn-sm" onclick="Audio.speak('${w.zh}')">${icon('volume')}Nghe</button>${this.revealed?`<div class="word-py" style="margin-top:16px">${w.py}</div><div class="word-vi">${esc(w.vi)}</div><div class="word-example"><div class="zh">${w.exZh}</div><div>${esc(w.exVi)}</div></div><div class="rating"><button onclick="Review.rate(0)">Quên<small>lại 1 ngày</small></button><button onclick="Review.rate(1)">Khó<small>ngắn hơn</small></button><button onclick="Review.rate(2)">Tốt<small>đúng lịch</small></button><button onclick="Review.rate(3)">Dễ<small>lâu hơn</small></button></div>`:`<p style="color:var(--muted);margin:13px 0">Hãy nhớ nghĩa và cách đọc trước khi lật thẻ.</p><button class="btn btn-primary" onclick="Review.reveal()">Hiện đáp án</button>`}`},reveal(){this.revealed=true;this.render()},rate(q){const w=this.queue[this.index];DB.update(d=>{let r=d.reviews[w.id]||{due:today(),interval:0,ease:2.5,reps:0};if(q===0){r.reps=0;r.interval=1;r.ease=Math.max(1.3,r.ease-.2);d.mistakes[w.id]=(d.mistakes[w.id]||0)+1}else{r.reps++;if(r.reps===1)r.interval=q===1?1:2;else if(r.reps===2)r.interval=q===3?7:4;else r.interval=Math.max(2,Math.round(r.interval*r.ease*(q===1?.75:q===3?1.35:1)));r.ease=Math.max(1.3,r.ease+(q===1?-.1:q===3?.12:0));if(q>=2&&d.mistakes[w.id])d.mistakes[w.id]=Math.max(0,d.mistakes[w.id]-1)}r.due=addDays(r.interval);d.reviews[w.id]=r;d.reviewedToday++;d.xp+=q===0?1:3;d.activity[today()]=(d.activity[today()]||0)+1});this.index++;this.revealed=false;this.render()}};
+
+const Vocab={render(){const d=DB.load(),q=document.getElementById('vocabSearch').value.toLowerCase(),f=document.getElementById('vocabFilter').value;let list=WORDS.filter(w=>{const learned=d.learnedWords.includes(w.id),r=d.reviews[w.id],weak=(d.mistakes[w.id]||0)>0,due=learned&&(!r||r.due<=today());if(f==='learned'&&!learned)return false;if(f==='weak'&&!weak)return false;if(f==='due'&&!due)return false;return [w.zh,w.py,w.vi].some(x=>x.toLowerCase().includes(q))});document.getElementById('vocabGrid').innerHTML=list.length?list.map(w=>{const learned=d.learnedWords.includes(w.id),r=d.reviews[w.id],mist=d.mistakes[w.id]||0;const state=!learned?['locked','Chưa học']:mist?['weak','Cần củng cố']:r&&r.reps>2?['mastered','Đã nhớ']:['learning','Đang học'];return `<div class="vocab-item"><div class="cn">${w.zh}</div><div class="py" style="${d.showPinyin?'':'display:none'}">${w.py}</div><div class="vi">${esc(w.vi)}</div><div class="vocab-foot"><span class="mastery"><i class="status-dot ${state[0]}"></i>${state[1]}</span><button class="btn btn-sm btn-outline" onclick="Audio.speak('${w.zh}')" aria-label="Nghe phát âm">${icon('volume')}</button></div></div>`}).join(''):'<div class="empty" style="grid-column:1/-1">Không có từ phù hợp.</div>'},togglePinyin(){DB.update(d=>d.showPinyin=!d.showPinyin);this.render()}};
+
+const AITutor={system(){const d=DB.load(),next=App.nextLesson(),weak=WORDS.filter(w=>(d.mistakes[w.id]||0)>0).sort((a,b)=>d.mistakes[b.id]-d.mistakes[a.id]).slice(0,8);return `Bạn là trợ giảng tiếng Trung cho người Việt hoàn toàn mới. Học viên đã hoàn thành ${d.completed.length}/${ALL_LESSONS.length} bài, bài hiện tại là "${next.title}". Từ đang yếu: ${weak.map(w=>w.zh+'('+w.py+': '+w.vi+')').join(', ')||'chưa có'}. Luôn trả lời bằng tiếng Việt dễ hiểu; mọi chữ Hán mới phải kèm pinyin và nghĩa; chỉ dùng kiến thức phù hợp A0-A1; sửa lỗi nhẹ nhàng; đưa ví dụ ngắn và một bài tập cuối câu trả lời.`},render(){const d=DB.load();const log=document.getElementById('chatLog');if(!d.chat.length)d.chat=[{role:'ai',text:'你好！Mình là trợ giảng AI. Bạn có thể hỏi ngữ pháp, gửi câu tiếng Trung để mình sửa, hoặc luyện hội thoại theo bài hiện tại.'}];log.innerHTML=d.chat.map(m=>`<div class="msg ${m.role}">${esc(m.text)}</div>`).join('');log.scrollTop=log.scrollHeight},preset(t){document.getElementById('chatInput').value=t;this.send()},saveSettings(){DB.update(d=>{d.ai.key=document.getElementById('aiKey').value.trim();d.ai.model=document.getElementById('aiModel').value.trim()||'gemini-3.6-flash'});UI.toast('Đã lưu cấu hình AI')},async send(){const inp=document.getElementById('chatInput'),text=inp.value.trim();if(!text)return;inp.value='';DB.update(d=>d.chat.push({role:'user',text}));this.render();const loading={role:'ai',text:'Đang suy nghĩ…'};const d=DB.load();d.chat.push(loading);DB.save(d);this.render();let reply;try{reply=d.ai.key?await this.callGemini(text,d):this.offline(text,d)}catch(e){reply='Không gọi được AI: '+e.message+'\n\nMình đã chuyển sang trợ giảng offline. '+this.offline(text,d)}const latest=DB.load();latest.chat.pop();latest.chat.push({role:'ai',text:reply});latest.chat=latest.chat.slice(-30);DB.save(latest);this.render()},async callGemini(text,d){const model=encodeURIComponent(d.ai.model||'gemini-3.6-flash');const res=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':d.ai.key},body:JSON.stringify({systemInstruction:{parts:[{text:this.system()}]},contents:[{role:'user',parts:[{text}]}],generationConfig:{temperature:.55,maxOutputTokens:1200}})});const data=await res.json();if(!res.ok)throw new Error(data.error?.message||'API trả về lỗi');return data.candidates?.[0]?.content?.parts?.map(p=>p.text||'').join('')||'AI không trả về nội dung.'},offline(text,d){const q=text.toLowerCase(),l=App.nextLesson();if(q.includes('lỗi')||q.includes('sai')||q.includes('yếu')){const weak=WORDS.filter(w=>(d.mistakes[w.id]||0)>0).sort((a,b)=>d.mistakes[b.id]-d.mistakes[a.id]).slice(0,5);return weak.length?`Bạn đang cần củng cố: ${weak.map(w=>`${w.zh} (${w.py}) – ${w.vi}`).join('; ')}.\n\nCách học: nghe từng từ 2 lần, đọc lại 3 lần, sau đó tự đặt một câu ngắn. Vào mục “Ôn tập thông minh” để hệ thống lặp lại đúng lịch.`:'Bạn chưa có đủ dữ liệu lỗi sai. Hãy hoàn thành ít nhất một bài luyện, hệ thống sẽ tự phát hiện từ yếu.'}if(q.includes('giải thích'))return `Bài hiện tại là “${l.title}”.\n\nTrọng tâm: ${l.objectives.join('; ')}.\n\nMẫu câu: ${l.grammar.formula}.\n${l.grammar.explain}\n\nVí dụ: ${l.grammar.examples[0][0]} (${l.grammar.examples[0][1]}) – ${l.grammar.examples[0][2]}.\n\nBài tập: hãy thay một từ trong câu ví dụ để tạo câu mới.`;if(q.includes('hội thoại'))return `Chúng ta luyện theo bài “${l.title}”.\n\nAI: 你好！你叫什么名字？(Nǐ hǎo! Nǐ jiào shénme míngzi?) – Xin chào! Bạn tên gì?\n\nBạn hãy trả lời bằng mẫu: 我叫… (Wǒ jiào…) – Tôi tên là…`;if(q.includes('bài')||q.includes('luyện')){const ws=shuffle(l.vocab).slice(0,5);return `Bài luyện theo cấp độ hiện tại:\n1. “${ws[0][0]}” nghĩa là gì?\n2. Viết pinyin của “${ws[1][0]}”.\n3. Dịch sang Trung: “${ws[2][2]}”.\n4. Đặt câu với ${ws[3][0]} (${ws[3][1]}).\n5. Đọc thành tiếng: ${ws[4][3]}\n\nLàm xong, gửi câu trả lời để mình kiểm tra.`}if(q.includes('是')||q.includes('有'))return `是 (shì) nghĩa là “là”, dùng để nối chủ ngữ với danh từ: 我是学生。Wǒ shì xuésheng. – Tôi là học sinh.\n\n有 (yǒu) nghĩa là “có”, dùng cho sở hữu hoặc tồn tại: 我有一本书。Wǒ yǒu yì běn shū. – Tôi có một quyển sách.\n\nPhủ định: 不是 (bú shì) nhưng 没有 (méiyǒu), không nói “不有”.\n\nBài tập: Dịch “Tôi không phải giáo viên, tôi có một người bạn.”`;return `Bài hiện tại của bạn là “${l.title}”. Trọng tâm: ${l.objectives.join('; ')}.\n\nMẫu câu chính: ${l.grammar.formula}.\n${l.grammar.explain}\n\nVí dụ: ${l.grammar.examples[0][0]} (${l.grammar.examples[0][1]}) – ${l.grammar.examples[0][2]}.\n\nBài tập: hãy tự thay một từ trong câu ví dụ để tạo câu mới.`}};
+
+const Progress={render(){const d=DB.load();document.getElementById('progStreak').textContent=d.streak;document.getElementById('progXp').textContent=d.xp;document.getElementById('progLessons').textContent=d.completed.length;const days=[];for(let i=6;i>=0;i--){const x=new Date();x.setDate(x.getDate()-i);days.push(x.toISOString().slice(0,10))}const max=Math.max(1,...days.map(x=>d.activity[x]||0));document.getElementById('weekChart').innerHTML=days.map(x=>{const v=d.activity[x]||0;return `<div class="bar-wrap"><div class="bar" style="height:${Math.max(4,v/max*125)}px"></div><b>${v}</b><div>${new Date(x).toLocaleDateString('vi-VN',{weekday:'short'})}</div></div>`}).join('');const weak=WORDS.filter(w=>(d.mistakes[w.id]||0)>0).sort((a,b)=>d.mistakes[b.id]-d.mistakes[a.id]).slice(0,6);document.getElementById('weakWords').innerHTML=weak.length?weak.map(w=>`<div class="mistake-item"><div><b class="zh">${w.zh}</b> <span style="color:#e36a18">${w.py}</span><div style="font-size:11px;color:var(--muted)">${esc(w.vi)}</div></div><span>${d.mistakes[w.id]} lỗi</span></div>`).join(''):'<div class="empty">Chưa có lỗi sai đáng chú ý.</div>';const skills=['phát âm','từ vựng','ngữ pháp','giao tiếp','tổng hợp'];document.getElementById('skillBars').innerHTML=skills.map(s=>{const ls=ALL_LESSONS.filter(l=>l.skill===s),done=ls.filter(l=>d.completed.includes(l.id)).length,p=UI.pct(done,ls.length);return `<div><div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;margin-bottom:6px"><span>${s[0].toUpperCase()+s.slice(1)}</span><span>${p}%</span></div><div class="progress"><div style="width:${p}%"></div></div></div>`}).join('')}};
+
+const Settings={setGoal(v){DB.update(d=>d.goal=Number(v));UI.toast('Đã cập nhật mục tiêu')},setRate(v){DB.update(d=>d.speechRate=Number(v));Audio.speak('你好，欢迎学习中文。')},exportData(){const blob=new Blob([JSON.stringify(DB.load(),null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='hanzigo_backup_'+today()+'.json';a.click();URL.revokeObjectURL(a.href)},importData(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(!d.version)throw 0;DB.save({...DB.defaults(),...d});location.reload()}catch(err){UI.toast('File sao lưu không hợp lệ')}};r.readAsText(f)},reset(){if(confirm('Xóa toàn bộ tiến độ và học lại từ đầu?')){const st=DB.storage();if(st)try{st.removeItem(DB.KEY)}catch(e){}DB._memory=null;location.reload()}}};
+
+window.addEventListener('DOMContentLoaded',()=>App.init());
+</script>
+</body>
 </html>
